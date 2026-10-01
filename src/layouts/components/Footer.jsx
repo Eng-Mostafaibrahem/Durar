@@ -6,7 +6,7 @@ import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { Container } from '../../components/Container.jsx';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher.jsx';
 import { paths } from '../../lib/paths.js';
-import topoPattern from '../../assets/vector.svg';
+import topoPattern from '../../assets/Vector.svg';
 import vision2030 from '../../assets/vision.png';
 import logo from '../../assets/logo.svg';
 

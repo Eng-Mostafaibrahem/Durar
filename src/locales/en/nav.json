@@ -1,0 +1,22 @@
+{
+  "home": "Home",
+  "jewelry": "Jewelry",
+  "stones": "Stones",
+  "collections": "Collections",
+  "auctions": "Auctions",
+  "offers": "Offers",
+  "about": "About us",
+  "contact": "Contact",
+  "faq": "FAQ",
+  "searchPlaceholder": "Search stones, meteorites, jewelry…",
+  "favorites": "Favorites",
+  "cart": "Cart",
+  "account": "Account",
+  "login": "Log in",
+  "register": "Create account",
+  "logout": "Log out",
+  "myAccount": "My account",
+  "myOrders": "My orders",
+  "myBids": "My bids",
+  "skipToContent": "Skip to main content"
+}

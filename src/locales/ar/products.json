@@ -1,0 +1,70 @@
+{
+  "title": "المتجر",
+  "description": "اختر من مجموعاتنا المختارة بعناية",
+  "filters": {
+    "category": "الفئة",
+    "priceRange": "نطاق السعر",
+    "minPrice": "من",
+    "maxPrice": "إلى",
+    "type": "النوع",
+    "availability": "التوفّر",
+    "availableOnly": "المتوفّر فقط",
+    "onOffer": "عليها عرض",
+    "search": "ابحث في المتجر",
+    "all": "الكل",
+    "reset": "مسح التصفية",
+    "button": "تصفية"
+  },
+  "sortLabel": "الترتيب",
+  "types": {
+    "stone": "حجر",
+    "meteorite": "نيّة",
+    "jewelry": "مجوهرات"
+  },
+  "sort": {
+    "newest": "الأحدث",
+    "priceAsc": "السعر: من الأقل للأعلى",
+    "priceDesc": "السعر: من الأعلى للأقل",
+    "popular": "الأكثر رواجاً"
+  },
+  "specs": {
+    "weight": "الوزن",
+    "dimensions": "الأبعاد",
+    "origin": "المنشأ",
+    "type": "النوع",
+    "certificate": "الشهادة",
+    "sku": "رمز القطعة"
+  },
+  "stock": {
+    "inStock": "متوفّر",
+    "lowStock": "بقي {{count}} فقط",
+    "outOfStock": "غير متوفّر"
+  },
+  "description": "الوصف",
+  "specifications": "المواصفات",
+  "auctionItem": "هذه القطعة تُباع بالمزاد.",
+  "auctionPanel": "تُعرض هذه القطعة في مزاد مباشر. زايد الآن لتفوز بها.",
+  "viewAuction": "عرض المزاد",
+  "certifiedBadge": "قطعة موثّقة",
+  "related": "قد يعجبك أيضاً",
+  "resultsCount": "{{count}} نتيجة",
+  "priceChanged": "تغيّر سعر هذه القطعة، راجعها قبل الإضافة إلى السلة.",
+  "empty": {
+    "title": "لا توجد قطع مطابقة",
+    "hint": "جرّب تعديل عوامل التصفية أو العودة لاحقاً."
+  },
+  "notFound": {
+    "title": "القطعة غير موجودة",
+    "hint": "ربما أُزيلت أو أن العنوان غير صحيح."
+  },
+  "backToShop": "العودة إلى المتجر",
+  "reviews": {
+    "title": "تقييمات العملاء",
+    "empty": "لا تقييمات بعد — كن أول من يقيّم.",
+    "rating": "التقييم",
+    "comment": "خبرتك مع القطعة",
+    "submit": "نشر التقييم",
+    "loginToReview": "سجّل الدخول لتقييم هذه القطعة",
+    "success": "شكراً لك، تم نشر تقييمك."
+  }
+}

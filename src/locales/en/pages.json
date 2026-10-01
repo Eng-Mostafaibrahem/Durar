@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "About us",
+    "hero": "Durar is not just a shop — it is the story of the earth, shaped by makers who cared for every detail.",
+    "storyTitle": "Every stone has a story",
+    "storyBody1": "Our journey starts at the source: gemstone mines and sky-born meteorites, with trusted teams that distinguish verified origins, and a network of rare-collectors spanning the globe. We never accept pieces of unknown provenance, and we never show a piece without a certificate documenting its origin and journey.",
+    "storyBody2": "From rough stone to finished piece, every item passes through expert hands that respect nature's balance: honest cutting, clean craftsmanship, and an authenticity certificate for each piece. What reaches you is the brightest chapter of that story.",
+    "specs": {
+      "founded": "Founded",
+      "foundedValue": "2018",
+      "origin": "Source regions",
+      "originValue": "South Africa · Brazil · Western Australia",
+      "certificates": "Certificates",
+      "certificatesValue": "Authenticity & inspection for every piece",
+      "showroom": "Cairo showroom",
+      "showroomValue": "Cairo — by appointment only"
+    },
+    "valuesTitle": "What we believe in",
+    "values": {
+      "heritage": {
+        "title": "Heritage",
+        "body": "We preserve each stone's story from its source to your piece; every gem's authenticity begins with respecting where it came from."
+      },
+      "authenticity": {
+        "title": "Authenticity",
+        "body": "Documented certificates and careful inspection before every piece is shown, so its value tells the truth, not just its sparkle."
+      },
+      "rarity": {
+        "title": "Rarity",
+        "body": "We select pieces rare in formation and grading — not merely the most brilliant ones."
+      }
+    },
+    "stats": {
+      "title": "Numbers tell the story",
+      "list": [
+        { "value": "1,200+", "label": "certified pieces" },
+        { "value": "25+", "label": "rare sources" },
+        { "value": "3", "label": "showrooms in the region" },
+        { "value": "7", "label": "years of trust" }
+      ]
+    },
+    "visitTitle": "Visit us up close",
+    "visitBody": "Come to our showroom to see the pieces under natural light, talk to our experts, and read the certificates yourself.",
+    "visitAddress": "Cairo — by appointment only",
+    "ctaShop": "Browse the collection",
+    "ctaContact": "Contact us"
+  },
+  "contact": {
+    "title": "Contact us",
+    "hero": "A question about a piece, a showroom appointment, or a delivery update — we welcome all of it.",
+    "infoTitle": "Ways to reach us",
+    "showroom": "Showroom",
+    "showroomValue": "Cairo — by appointment only",
+    "email": "Email",
+    "emailValue": "hello@durar.jewelry",
+    "phone": "Phone & WhatsApp",
+    "phoneValue": "+2 0100 000 0000",
+    "hours": "Opening hours",
+    "hoursValue": "Sat – Thu, 10 AM – 8 PM",
+    "formTitle": "Send us a message",
+    "subject": "Subject",
+    "subjects": {
+      "inquiry": "Inquiry about a piece",
+      "appointment": "Book a showroom visit",
+      "order": "Order follow-up",
+      "other": "Something else"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Write your message here… our team reads every one.",
+    "send": "Send message",
+    "sentTitle": "We received your message",
+    "sentBody": "Thank you for reaching out — our team will reply within two working days.",
+    "sentAnother": "Send another message"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Quick answers about the store, pieces, auctions and shipping."
+  },
+  "notFound": {
+    "title": "This page could not be found",
+    "body": "The page you're looking for may have moved or no longer exists.",
+    "backHome": "Back to home"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "title": "Shop",
+  "description": "Choose from our curated collections",
+  "filters": {
+    "category": "Category",
+    "priceRange": "Price range",
+    "minPrice": "From",
+    "maxPrice": "To",
+    "type": "Type",
+    "availability": "Availability",
+    "availableOnly": "In stock only",
+    "onOffer": "On offer",
+    "search": "Search the shop",
+    "all": "All",
+    "reset": "Clear filters",
+    "button": "Filters"
+  },
+  "sortLabel": "Sort by",
+  "types": {
+    "stone": "Stone",
+    "meteorite": "Meteorite",
+    "jewelry": "Jewelry"
+  },
+  "sort": {
+    "newest": "Newest",
+    "priceAsc": "Price: low to high",
+    "priceDesc": "Price: high to low",
+    "popular": "Most popular"
+  },
+  "specs": {
+    "weight": "Weight",
+    "dimensions": "Dimensions",
+    "origin": "Origin",
+    "type": "Type",
+    "certificate": "Certificate",
+    "sku": "Item code"
+  },
+  "stock": {
+    "inStock": "In stock",
+    "lowStock": "Only {{count}} left",
+    "outOfStock": "Out of stock"
+  },
+  "description": "Description",
+  "specifications": "Specifications",
+  "auctionItem": "This piece is sold by auction.",
+  "auctionPanel": "This piece is in a live auction. Bid now to win it.",
+  "viewAuction": "View auction",
+  "certifiedBadge": "Certified piece",
+  "related": "You may also like",
+  "resultsCount": "{{count}} results",
+  "priceChanged": "The price of this item changed. Please review before adding to cart.",
+  "empty": {
+    "title": "No matching pieces",
+    "hint": "Try adjusting your filters or check back later."
+  },
+  "notFound": {
+    "title": "Piece not found",
+    "hint": "It may have been removed, or the link is incorrect."
+  },
+  "backToShop": "Back to shop",
+  "reviews": {
+    "title": "Customer reviews",
+    "empty": "No reviews yet — be the first to review.",
+    "rating": "Rating",
+    "comment": "Your experience with this piece",
+    "submit": "Post review",
+    "loginToReview": "Log in to review this piece",
+    "success": "Thank you — your review has been published."
+  }
+}

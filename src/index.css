@@ -1,0 +1,191 @@
+@import '@fontsource/amiri/400.css';
+@import '@fontsource/amiri/700.css';
+@import '@fontsource/ibm-plex-sans-arabic/300.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@import 'tailwindcss';
+
+@custom-variant rtl (&:where([dir='rtl'], [dir='rtl'] *));
+@custom-variant ltr (&:where([dir='ltr'], [dir='ltr'] *));
+
+@theme {
+  /* ---- Brand palette (approximate, read from the Figma screenshot - verify before launch) ---- */
+  --color-primary-500: #7c0a20;
+  --color-primary-600: #6a081b;
+  --color-primary-700: #5c0a18;
+  --color-primary-100: #f6e7ea;
+  --color-primary-200: #e7c3ca;
+
+
+  --color-secondary-500: #0d5c3e;
+  --color-secondary-600: #0a4a32;
+  --color-secondary-700: #0f5a3a;
+  --color-secondary-800: #0c4a30;
+  --color-secondary-100: #e2f0ea;
+  --color-secondary-200: #bcdccd;
+--color-text-color:#667264
+  --color-hue-500: #6b7a65;
+  --color-hue-300: #a6b2a2;
+  --color-hue-100: #edf0ec;
+
+  --color-border-500: #8b4a3a;
+  --color-border-300: #c9a49a;
+  --color-border-100: #ece2de;
+
+  --color-base-dark: #333333;
+  --color-base-light: #ffffff;
+
+  --color-bg-main: #f2efde;
+  --color-bg-secondary: #f2efde;
+
+  /* Dark hero gradient, top -> bottom (approx. from the Colors page) */
+  --color-deep-teal: #044b4a;
+  --color-deep-navy: #002045;
+
+  /* ---- Semantic colors (empty in Figma - tuned to the brand palette) ---- */
+  --color-success-500: #2f7d4f;
+  --color-success-100: #e3f1e8;
+  --color-info-500: #2c6ea8;
+  --color-info-100: #e5eef6;
+  --color-warning-500: #a8710d;
+  --color-warning-100: #f8eed9;
+  --color-error-500: #a32020;
+  --color-error-100: #f8e4e4;
+
+  /* ---- Typography ---- */
+  --font-display: 'Amiri', 'Noto Naskh Arabic', Georgia, serif;
+  --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+
+  --text-hero: 3.5rem;
+  --text-hero--line-height: 1.15;
+  --text-hero--letter-spacing: -0.01em;
+
+  /* ---- Motion ---- */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-panel-in: panel-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Layout ---- */
+  --spacing-header: 4.5rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    border-color: var(--color-border-100);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-base-dark);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.3;
+    color:#667264;
+  }
+
+  /* Arabic numerals stay Western (٠١٢ vs 012) for price readability across both locales. */
+  :where(html[lang='ar']) {
+    font-feature-settings: 'ss01';
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary-500) 20%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@theme {
+  --animate-loading-bar: loading-bar 1.2s ease-in-out infinite;
+}
+
+@layer components {
+  .bg-dark-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-deep-teal) 0%,
+      var(--color-deep-navy) 100%
+    );
+  }
+
+  .bg-silk-fallback {
+    background-image:
+      radial-gradient(
+        120% 90% at 50% 0%,
+        color-mix(in oklab, var(--color-primary-700) 85%, white) 0%,
+        transparent 60%
+      ),
+      linear-gradient(160deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%);
+  }
+
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 80rem;
+    padding-inline: 1.25rem;
+    
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+}

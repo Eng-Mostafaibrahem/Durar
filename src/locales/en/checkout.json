@@ -1,0 +1,51 @@
+{
+  "title": "Checkout",
+  "steps": {
+    "address": "Shipping address",
+    "payment": "Payment",
+    "review": "Review",
+    "done": "Confirmation"
+  },
+  "back": "Back",
+  "next": "Continue",
+  "orderEmpty": "Your cart is empty",
+  "orderEmptyHint": "Add pieces to your cart first, then come back to complete your order.",
+  "fields": {
+    "name": "Full name",
+    "phone": "Phone number",
+    "city": "City",
+    "addressLine": "Detailed address",
+    "addressPlaceholder": "District, street, building number…"
+  },
+  "paymentNoteTitle": "Secure, trusted payment",
+  "paymentNoteBody": "After placing your order you will be taken to a secure payment page via our online payment gateway to complete the transaction.",
+  "paymentOptionLabel": "Preferred payment method",
+  "reviewSummary": "Order summary",
+  "coupon": "Coupon code",
+  "couponPlaceholder": "Enter coupon code",
+  "applyCoupon": "Apply",
+  "couponApplied": "Coupon code applied",
+  "couponInvalid": "Invalid coupon code",
+  "couponRemoved": "Coupon code removed",
+  "discount": "Discount",
+  "items": "Items",
+  "shippingNote": "Shipping fees and final values are confirmed by the server when the order is placed.",
+  "placeOrder": "Place order",
+  "placeOrderError": "Could not complete your order. Please try again.",
+  "backToCart": "Back to cart",
+  "success": {
+    "title": "Thank you — your order is confirmed",
+    "body": "We sent the details to your email. You can follow its status from your orders.",
+    "orderNumber": "Order number",
+    "payNow": "Pay now",
+    "paymentProcessing": "Preparing the payment link…",
+    "paymentError": "Could not prepare the payment link. Please try again from your order page.",
+    "viewOrders": "View all my orders",
+    "backHome": "Back to home"
+  },
+  "payment": {
+    "cashOnDelivery": "Cash on delivery",
+    "bankTransfer": "Bank transfer",
+    "card": "Credit / debit card"
+  }
+}

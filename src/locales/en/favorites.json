@@ -1,0 +1,8 @@
+{
+  "title": "Favorites",
+  "itemsCount_one": "{{count}} piece",
+  "itemsCount_other": "{{count}} pieces",
+  "empty": "No saved pieces yet",
+  "emptyHint": "Tap the heart on any piece to save it here — it will always be waiting for you.",
+  "remove": "Remove"
+}

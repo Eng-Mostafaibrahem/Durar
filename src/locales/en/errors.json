@@ -1,0 +1,10 @@
+{
+  "generic": "Something went wrong. Please try again.",
+  "network": "We can't reach the server. Check your connection and try again.",
+  "unauthorized": "Your session has expired. Please log in again.",
+  "forbidden": "You don't have access to this action.",
+  "notFound": "The requested item was not found.",
+  "conflict": "This action conflicts with the current state. Please refresh.",
+  "server": "The server ran into a problem. Please try again shortly.",
+  "unknown": "An unexpected error occurred."
+}

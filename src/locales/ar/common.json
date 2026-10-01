@@ -1,0 +1,62 @@
+{
+  "appName": "دُرَّر",
+  "tagline": "أحجار نادرة ونيّات من السماء، صُنعت لك",
+  "actions": {
+    "browse": "تصفّح",
+    "viewAll": "عرض الكل",
+    "seeMore": "عرض المزيد",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "clear": "مسح",
+    "clearFilters": "مسح عوامل التصفية",
+    "apply": "تطبيق",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "remove": "إزالة",
+    "delete": "حذف",
+    "close": "إغلاق",
+    "retry": "أعد المحاولة",
+    "loadMore": "عرض المزيد",
+    "submit": "إرسال",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "continue": "متابعة",
+    "yes": "نعم",
+    "no": "لا",
+    "quantity": "الكمية",
+    "addToCart": "أضف إلى السلة",
+    "addToFavorites": "أضف إلى المفضلة",
+    "removeFromFavorites": "إزالة من المفضلة"
+  },
+  "states": {
+    "loading": "جارٍ التحميل…",
+    "empty": "لا يوجد شيء هنا بعد",
+    "error": "حدث خطأ ما",
+    "noResults": "لا توجد نتائج"
+  },
+  "a11y": {
+    "skipToContent": "تخطَّ إلى المحتوى",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "switchLanguage": "تغيير اللغة",
+    "increaseQuantity": "زيادة الكمية",
+    "decreaseQuantity": "إنقاص الكمية",
+    "closeDialog": "إغلاق النافذة",
+    "loading": "جارٍ التحميل",
+    "zoomImage": "تكبير الصورة",
+    "galleryThumbnails": "صور القطعة",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور"
+  },
+  "footer": {
+    "about": "من نحن",
+    "help": "المساعدة",
+    "followUs": "تابعنا",
+    "rights": "جميع الحقوق محفوظة.",
+    "showroom": "المعرض"
+  }
+}

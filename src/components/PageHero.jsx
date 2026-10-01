@@ -1,0 +1,107 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FiSearch } from "react-icons/fi";
+
+/* المحتوى الافتراضي (ar/en) جوه الكومبوننت نفسه */
+const DEFAULT_CONTENT = {
+  title: {
+    ar: "اقتني قطعة تحمل قصة",
+    en: "Own a piece that carries a story",
+  },
+  subtitle: {
+    ar: "تشكيلة من الأحجار الكريمة والمجوهرات النادرة، لكل قطعة حكاية تستحق أن تُروى.",
+    en: "A curated selection of rare gemstones and jewelry, each with a story worth telling.",
+  },
+  placeholder: {
+    ar: "ابحث عن حجر أو قطعة...",
+    en: "Search for a gem or piece...",
+  },
+  button: { ar: "بحث", en: "Search" },
+  tags: [
+    { ar: "أحجار كريمة", en: "Gemstones" },
+    { ar: "نيازك", en: "Meteorites" },
+    { ar: "مجوهرات", en: "Jewelry" },
+  ],
+};
+
+export  function PageHero({
+  image,                         // صورة الخلفية (مطلوبة)
+  content = DEFAULT_CONTENT,     // تقدر تمرر محتوى مختلف بنفس الشكل
+  onSearch,                      // (query) => void
+  onTagClick,                    // (tag, lang) => void
+  showSearch = true,
+  overlay = "bg-black/60",       // لون الـ overlay
+  minHeight = "min-h-[520px] md:min-h-[640px]",
+  className = "",
+}) {
+  const { i18n } = useTranslation();
+  const lang = i18n.language?.startsWith("ar") ? "ar" : "en";
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch?.(query.trim());
+  };
+
+  return (
+    <section
+      className={`relative isolate flex items-center justify-center overflow-hidden ${minHeight} ${className}`}
+    >
+      {/* الخلفية */}
+      <img
+        src={image}
+        alt=""
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+      <div className={`absolute inset-0 -z-10 ${overlay}`} />
+
+      {/* المحتوى */}
+      <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-5 px-4 text-center text-white">
+        <h1 className="text-4xl font-bold leading-tight md:text-6xl">
+          {content.title[lang]}
+        </h1>
+
+        <p className="max-w-xl text-sm text-white/80 md:text-base">
+          {content.subtitle[lang]}
+        </p>
+
+        {showSearch && (
+          <form
+            onSubmit={handleSubmit}
+            className="mt-2 flex w-full items-center gap-2 rounded-full bg-white p-1.5 shadow-lg"
+          >
+            <FiSearch className="ms-3 shrink-0 text-xl text-neutral-400" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={content.placeholder[lang]}
+              className="min-w-0 flex-1 bg-transparent px-2 py-2 text-sm text-neutral-800 outline-none placeholder:text-neutral-400"
+            />
+            <button
+              type="submit"
+              className="rounded-full bg-[#5c0b1c] px-6 py-2 text-sm font-medium text-white transition hover:bg-[#470815]"
+            >
+              {content.button[lang]}
+            </button>
+          </form>
+        )}
+
+        {content.tags?.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-2">
+            {content.tags.map((tag, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => onTagClick?.(tag, lang)}
+                className="rounded-full border border-white/40 px-4 py-1.5 text-xs text-white/90 backdrop-blur-sm transition hover:bg-white/15"
+              >
+                {tag[lang]}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

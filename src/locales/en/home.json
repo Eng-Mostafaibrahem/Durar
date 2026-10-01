@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "eyebrow": "Rare pieces, crafted for you",
+    "title": "A piece of the earth",
+        "title2": "made yours",
+
+    "subtitle": "Hand-selected stones, meteorites and jewelry — each one graded, certified and delivered to your door.",
+    "primaryCta": "Browse the collection",
+    "secondaryCta": "Our story"
+  },
+  "featured": {
+    "title": "Featured picks",
+    "subtitle": "The pieces our collectors are watching this week.",
+    "viewAll": "View all",
+    "tabs": {
+      "bestSelling": "Best selling",
+      "newest": "Newest",
+      "rare": "Rare pieces"
+    },
+    "empty": "No pieces in this category right now",
+    "emptyHint": "Check back soon for more pieces."
+  },
+  "collections": {
+    "title": "Discover our collections",
+    "subtitle": "Rings, necklaces, bracelets, tiaras, loose stones and earrings.",
+    "items": {
+      "rings": "Rings",
+      "necklaces": "Necklaces",
+      "bracelets": "Bracelets",
+      "tiaras": "Tiaras & crowns",
+      "gemstones": "Gemstones",
+      "earrings": "Earrings"
+    }
+  },
+  "editorial": {
+    "title": "Every stone has a story",
+    "body": "We travel to the sources, meet the collectors, and document the journey of each stone from origin to your piece.",
+    "weight": "Weight",
+    "origin": "Origin",
+    "type": "Type",
+    "certificate": "Certificate",
+    "cta": "Read the story"
+  },
+  "selected": {
+    "title": "Selected pieces",
+    "viewAll": "View all"
+  },
+  "auction": {
+    "title": "Rare piece, exceptional opportunity",
+    "live": "Live",
+    "currentBid": "Current bid",
+    "startingPrice": "Starting price",
+    "minIncrement": "Min. increment",
+    "endsIn": "Ends in",
+    "bidNow": "Bid now",
+    "details": "Details"
+  },
+  "story": {
+    "title": "Every stone has a story",
+    "heritage": "Heritage",
+    "authenticity": "Authenticity",
+    "rarity": "Rarity"
+  },
+  "behind": {
+    "title": "Discover what's behind the stone"
+  },
+  "origin": {
+    "eyebrow": "Rare from the earth",
+    "title": "Exceptional from its origin",
+    "body": "From the deepest mines to our showcase, we don't just sell pieces — we bring a fragment of the earth's story into your hands.",
+    "cta": "New pieces"
+  },
+  "showroom": {
+    "title": "Discover up close",
+    "body": "Visit our showroom to see the pieces in person, under natural light, with the certificates in hand.",
+    "address": "Cairo — visits by appointment"
+  },
+  "galleryCta": {
+    "title": "A gallery built around rarity",
+    "button": "Enter the gallery"
+  },
+  "faq": {
+    "title": "Frequently asked questions"
+  },
+  "app": {
+    "title": "Take the collection with you",
+    "body": "Download the app to follow live auctions and get notified when a piece you love is published.",
+    "button": "Download the app",
+    "apple": "App Store",
+    "google": "Google Play"
+  }
+}

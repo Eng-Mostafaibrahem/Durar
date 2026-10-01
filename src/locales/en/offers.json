@@ -1,0 +1,21 @@
+{
+  "title": "Offers",
+  "subtitle": "Limited-time prices on selected pieces.",
+  "badge": "-{{percent}}%",
+  "endsIn": "Offer ends in",
+  "originalPrice": "Original price",
+  "currentPrice": "Offer price",
+  "couponHint": "Enter the code at checkout to apply the discount",
+  "productsHeading": "Discounted pieces",
+  "resultsCount": "{{count}} offers",
+  "empty": "No active offers right now",
+  "emptyHint": "Check back soon — new offers are on the way.",
+  "shopAll": "Shop all pieces",
+  "hero": {
+    "eyebrow": "Limited-time offers",
+    "title": "Rare prices, for a limited window",
+    "subtitle": "Real discounts on selected stones and meteorites — quantities are limited and the clock is running.",
+    "primaryCta": "Browse offers",
+    "secondaryCta": "Live auctions"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "title": "Auctions",
+  "subtitle": "Rare pieces open to public bidding — an exceptional opportunity to acquire.",
+  "tabs": {
+    "live": "Live",
+    "upcoming": "Upcoming",
+    "ended": "Ended"
+  },
+  "badge": {
+    "live": "Live auction",
+    "upcoming": "Upcoming",
+    "ended": "Ended",
+    "auction": "Auction"
+  },
+  "empty": {
+    "live": "No live auctions right now",
+    "upcoming": "No upcoming auctions yet",
+    "ended": "No ended auctions"
+  },
+  "emptyHint": "Check back soon for the latest auctions.",
+  "currentBid": "Current bid",
+  "startingPrice": "Starting price",
+  "nextBid": "Min next bid",
+  "bidsLabel": "Bids",
+  "bidsCount": "{{count}} bids",
+  "endsIn": "Ends in",
+  "startsIn": "Starts in",
+  "ended": "Auction ended",
+  "notStartedYet": "This auction has not started yet.",
+  "endedNotice": "This auction has ended.",
+  "biddingPaused": "Bidding is paused on this auction.",
+  "placeBid": "Place bid",
+  "bidAmount": "Your bid",
+  "minBidHint": "Minimum acceptable bid: {{amount}}",
+  "bidTooLow": "Enter an amount of at least {{amount}}",
+  "bidSuccess": "Your bid was placed successfully",
+  "bidError": "Could not place your bid, try again",
+  "bidHistory": "Bid history",
+  "noBidsYet": "No bids yet — be the first to bid!",
+  "loginRequired": "Only registered members can place bids.",
+  "loginToBid": "Log in to place a bid",
+  "schedule": {
+    "starts": "Starts",
+    "ends": "Ends"
+  },
+  "specs": {
+    "title": "Piece details",
+    "karat": "Karat",
+    "weight": "Weight",
+    "condition": "Condition"
+  },
+  "status": {
+    "won": "You won",
+    "lost": "Not won",
+    "reserveNotMet": "Reserve not met",
+    "highestBidder": "You're the highest bidder"
+  },
+  "wonNotice": "Congratulations! You won this auction. Complete payment to receive your piece.",
+  "completePayment": "Complete payment",
+  "checkoutTitle": "Complete auction purchase",
+  "checkoutSubmit": "Confirm and create order",
+  "checkoutSuccess": "Your order was created successfully",
+  "checkoutError": "Could not create the order, try again",
+  "myBids": {
+    "empty": "No bids yet",
+    "hint": "When you participate in an auction, your bids will appear here, and if you win you can complete payment from the auction page.",
+    "browse": "Browse auctions"
+  },
+  "time": {
+    "days": "d",
+    "hours": "h",
+    "minutes": "m",
+    "seconds": "s"
+  }
+}

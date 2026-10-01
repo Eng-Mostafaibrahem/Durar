@@ -1,0 +1,62 @@
+{
+  "appName": "Durar",
+  "tagline": "Rare stones and meteorites, crafted for you",
+  "actions": {
+    "browse": "Browse",
+    "viewAll": "View all",
+    "seeMore": "See more",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear",
+    "clearFilters": "Clear filters",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "remove": "Remove",
+    "delete": "Delete",
+    "close": "Close",
+    "retry": "Try again",
+    "loadMore": "Load more",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "continue": "Continue",
+    "yes": "Yes",
+    "no": "No",
+    "quantity": "Quantity",
+    "addToCart": "Add to cart",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites"
+  },
+  "states": {
+    "loading": "Loading…",
+    "empty": "Nothing here yet",
+    "error": "Something went wrong",
+    "noResults": "No results found"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "Switch language",
+    "increaseQuantity": "Increase quantity",
+    "decreaseQuantity": "Decrease quantity",
+    "closeDialog": "Close dialog",
+    "loading": "Loading",
+    "zoomImage": "Zoom image",
+    "galleryThumbnails": "Product images",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "footer": {
+    "about": "About",
+    "help": "Help",
+    "followUs": "Follow us",
+    "rights": "All rights reserved.",
+    "showroom": "Showroom"
+  }
+}

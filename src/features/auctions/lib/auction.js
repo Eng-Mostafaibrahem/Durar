@@ -55,7 +55,11 @@ export function normalizeAuction(auction, language = 'ar') {
     description: auction.description ?? text.description,
     image: resolveImageUrl(auction.cover_image),
     gallery: (Array.isArray(auction.gallery) ? auction.gallery : [])
-      .map((item) => resolveImageUrl(item.url ?? item.image))
+      .map((item) =>
+        resolveImageUrl(
+          typeof item === 'string' ? item : item?.url ?? item?.image ?? item?.image_url,
+        ),
+      )
       .filter(Boolean),
     metadata: auction.metadata ?? null,
     startingPrice: Number(auction.starting_price) || 0,

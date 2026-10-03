@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  HiCheckCircle,
-  HiClock,
-  HiEnvelope,
-  HiMapPin,
-  HiPhone,
-} from 'react-icons/hi2';
+import { HiCheckCircle, HiClock, HiEnvelope, HiMapPin, HiPhone } from 'react-icons/hi2';
 import { Seo } from '../../components/Seo.jsx';
 import { Container } from '../../components/Container.jsx';
+import { PageHero } from '../../components/PageHero.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Input } from '../../components/ui/Input.jsx';
 import { Textarea } from '../../components/ui/Textarea.jsx';
+import banner from '../../assets/shop-banner.webp';
 
 const CHANNELS = [
   { key: 'showroom', icon: HiMapPin },
@@ -51,14 +47,17 @@ export default function ContactPage() {
     <>
       <Seo title={t('pages:contact.title')} description={t('pages:contact.hero')} />
 
-      <header className="bg-gradient-to-b from-[#044B4A] to-[#002045] text-white">
-        <Container className="py-16 lg:py-20">
-          <h1 className="font-display text-4xl font-bold lg:text-5xl">{t('pages:contact.title')}</h1>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 lg:text-base">
-            {t('pages:contact.hero')}
-          </p>
-        </Container>
-      </header>
+      <PageHero
+        image={banner}
+
+        eyebrow={t('common:appName')}
+        title={t('pages:contact.title')}
+        subtitle={t('pages:contact.hero')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[320px] md:min-h-[400px]"
+        className="bg-dark-gradient"
+      />
 
       <Container className="py-12 lg:py-16">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_26rem]">

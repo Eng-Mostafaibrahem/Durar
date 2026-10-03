@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { HiExclamationTriangle, HiOutlineSwatch } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
+import { PageHero } from '../../../components/PageHero.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { useCategory } from '../hooks/useCategory.js';
@@ -10,6 +11,7 @@ import { useProducts } from '../../products/hooks/useProducts.js';
 import { ProductGrid } from '../../products/components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../../products/components/ProductListSkeleton.jsx';
 import { paths } from '../../../lib/paths.js';
+import banner from '../../../assets/shop-banner.webp';
 
 export default function CollectionPage() {
   const { t } = useTranslation();
@@ -50,16 +52,17 @@ export default function CollectionPage() {
         description={activeCategory.description ?? t('products:description')}
       />
 
-      <Container className="py-10">
-        <header className="rounded-2xl bg-gradient-to-b from-[#044B4A] to-[#002045] px-6 py-10 text-white lg:px-10">
-          <h1 className="font-display text-3xl font-bold lg:text-4xl">{activeCategory.name}</h1>
-          {activeCategory.description && (
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-white/80">
-              {activeCategory.description}
-            </p>
-          )}
-        </header>
+      <PageHero
+              image={banner}
 
+        title={activeCategory.name}
+        subtitle={activeCategory.description ?? ''}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[320px] md:min-h-[400px]"
+        className="bg-dark-gradient"
+      />
+      <Container className="py-10">
         <div className="mt-10">
           {products.isError ? (
             <EmptyState

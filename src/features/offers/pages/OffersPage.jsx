@@ -10,6 +10,7 @@ import { ProductGrid } from '../../products/components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../../products/components/ProductListSkeleton.jsx';
 import { OfferBanner } from '../components/OfferBanner.jsx';
 import { useOfferBanners, useOffersProducts } from '../hooks/useOffers.js';
+import banner from '../../../assets/shop-banner.webp';
 
 export default function OffersPage() {
   const { t } = useTranslation();
@@ -24,27 +25,35 @@ export default function OffersPage() {
       <Seo title={t('offers:title')} description={t('offers:subtitle')} />
 
       <PageHero
+        image={banner}
+
         eyebrow={t('offers:hero.eyebrow')}
         title={t('offers:hero.title')}
         subtitle={t('offers:hero.subtitle')}
         primaryCta={t('offers:hero.primaryCta')}
-        primaryTo={paths.shop}
+        // primaryTo={paths.shop}
         secondaryCta={t('offers:hero.secondaryCta')}
-        secondaryTo={paths.auctions}
+        // secondaryTo={paths.auctions}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[360px] md:min-h-[440px]"
+        className="bg-dark-gradient"
       />
 
       <Container className="py-10">
-        {offerBanners.length > 0 && (
+        {/* {offerBanners.length > 0 && (
           <div className="mt-8 space-y-6">
             {offerBanners.map((banner) => (
               <OfferBanner key={banner.id} banner={banner} />
             ))}
           </div>
-        )}
+        )} */}
 
         <div className="mt-10">
           <div className="flex flex-wrap items-end justify-between gap-3">
-            <h2 className="font-display text-2xl font-bold text-base-dark">{t('offers:productsHeading')}</h2>
+            <h2 className="font-display text-2xl font-bold text-base-dark">
+              {t('offers:productsHeading')}
+            </h2>
             {!offers.isPending && list.length > 0 && (
               <p className="text-sm text-hue-500">
                 {t('offers:resultsCount', { count: list.length })}

@@ -16,7 +16,22 @@ export const API_ORIGIN = (() => {
 export function resolveImageUrl(url) {
   if (!url || typeof url !== 'string') return null;
 
-  if (/^https?:\/\//i.test(url)) return url;
+  if (/^https?:\/\//i.test(url)) {
+    try {
+      const parsed = new URL(url);
+      if (parsed.origin === API_ORIGIN && parsed.pathname.startsWith('/auctions/')) {
+        parsed.pathname = `/storage${parsed.pathname}`;
+        return parsed.toString();
+      }
+    } catch {
+      return url;
+    }
+
+    return url;
+  }
+
+  if (url.startsWith('/storage/')) return `${API_ORIGIN}${url}`;
+  if (url.startsWith('/auctions/')) return `${API_ORIGIN}/storage${url}`;
   if (url.startsWith('/')) return `${API_ORIGIN}/storage${url}`;
   if (/^(data:|blob:)/.test(url)) return url;
 

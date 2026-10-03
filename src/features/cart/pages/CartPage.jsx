@@ -5,6 +5,7 @@ import { FaGem } from 'react-icons/fa';
 import { HiExclamationTriangle, HiShoppingBag, HiTrash } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
+import { PageHero } from '../../../components/PageHero.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { QuantityStepper } from '../../products/components/QuantityStepper.jsx';
@@ -13,6 +14,8 @@ import { normalizeCart } from '../lib/cartHelpers.js';
 import { resolveImageUrl } from '../../../utils/media.js';
 import { formatCurrency } from '../../../utils/formatCurrency.js';
 import { paths } from '../../../lib/paths.js';
+import banner from '../../../assets/shop-banner.webp';
+
 
 export default function CartPage() {
   const { t, i18n } = useTranslation();
@@ -46,20 +49,25 @@ export default function CartPage() {
     <>
       <Seo title={t('cart:title')} description={t('common:tagline')} />
 
+      <PageHero
+        image={banner}
+
+        eyebrow={count > 0 ? t('cart:itemsCount', { count }) : t('common:appName')}
+        title={t('cart:title')}
+        subtitle={t('common:tagline')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[320px] md:min-h-[400px]"
+        className="bg-dark-gradient"
+      />
       <Container className="py-10">
-        <header className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="font-display text-3xl font-bold text-base-dark">{t('cart:title')}</h1>
-            {count > 0 && (
-              <p className="mt-2 text-sm text-hue-500">{t('cart:itemsCount', { count })}</p>
-            )}
-          </div>
-          {items.length > 0 && (
+        {items.length > 0 && (
+          <header className="flex flex-wrap justify-end gap-4">
             <Button variant="outline" size="sm" onClick={handleClear} loading={clearCart.isPending}>
               {t('cart:clear')}
             </Button>
-          )}
-        </header>
+          </header>
+        )}
 
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
           <section aria-label={t('cart:title')}>

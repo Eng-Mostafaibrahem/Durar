@@ -21,8 +21,8 @@ import { ProductGrid } from '../components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../components/ProductListSkeleton.jsx';
 import { isOnOffer } from '../lib/productOffer.js';
 import { cn } from '../../../utils/cn.js';
-import {PageHero} from '../../../components/PageHero.jsx';
-import banner from "../../../assets/shop-banner.jpg"
+import { PageHero } from '../../../components/PageHero.jsx';
+import banner from '../../../assets/shop-banner.webp';
 
 const SORT_OPTIONS = ['newest', 'priceAsc', 'priceDesc', 'popular'];
 
@@ -97,17 +97,35 @@ export default function ShopPage() {
     <>
       <Seo title={t('products:title')} description={t('products:description')} />
 
-        <PageHero image={banner}></PageHero>
+      <PageHero
+        image={banner}
+        eyebrow={t('common:appName')}
+        title={t('products:title')}
+        subtitle={t('products:description')}
+        showSearch
+        showTags={false}
+        searchValue={filters.q}
+        searchPlaceholder={t('products:filters.search')}
+        searchButtonLabel={t('common:actions.search')}
+        onSearch={(q) => commitFilters(searchParams, setSearchParams, { q })}
+        minHeight="min-h-[420px] md:min-h-[520px]"
+        className="bg-dark-gradient"
+        filterAction={
+          <Button
+            variant="outline"
+            size="md"
+            className="border-white/60 bg-white/10 text-white hover:bg-white/20 lg:hidden"
+            onClick={() => setFiltersOpen(true)}
+          >
+            <HiFunnel aria-hidden="true" className="size-4" />
+            {t('products:filters.button')}
+            {hasActiveFilters && (
+              <span className="ms-1 rounded-full bg-white px-1.5 text-xs text-primary-500">•</span>
+            )}
+          </Button>
+        }
+      />
       <Container className="py-10">
-        <header className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h1 className="font-display text-3xl font-bold text-base-dark lg:text-4xl">
-              {t('products:title')}
-            </h1>
-            <p className="mt-2 text-sm text-hue-500">{t('products:description')}</p>
-          </div>
-        </header>
-
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[16rem_1fr]">
           <aside className="sticky top-24 hidden lg:block">
             <div className="rounded-2xl border border-border-500/15 bg-white p-5">
@@ -133,6 +151,7 @@ export default function ShopPage() {
                 isLoadingCategories={categories.isPending}
                 onApply={apply}
                 onReset={reset}
+                showSearch={false}
               />
             </div>
           </aside>
@@ -140,21 +159,6 @@ export default function ShopPage() {
           <div className="min-w-0">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="md"
-                  className="lg:hidden"
-                  onClick={() => setFiltersOpen(true)}
-                >
-                  <HiFunnel aria-hidden="true" className="size-4" />
-                  {t('products:filters.button')}
-                  {hasActiveFilters && (
-                    <span className="ms-1 rounded-full bg-primary-500 px-1.5 text-xs text-white">
-                      •
-                    </span>
-                  )}
-                </Button>
-
                 <p
                   className={cn(
                     'text-sm text-hue-500',
@@ -243,6 +247,7 @@ export default function ShopPage() {
           onApply={apply}
           onReset={reset}
           onClose={() => setFiltersOpen(false)}
+          showSearch={false}
         />
       </Drawer>
     </>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { HiExclamationTriangle, HiOutlineFunnel } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
+import { PageHero } from '../../../components/PageHero.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { cn } from '../../../utils/cn.js';
@@ -11,6 +12,8 @@ import { useAuctions } from '../hooks/useAuctions.js';
 import { normalizeAuction } from '../lib/auction.js';
 import { AuctionCard } from '../components/AuctionCard.jsx';
 import { AuctionsGridSkeleton } from '../components/AuctionsGridSkeleton.jsx';
+import banner from '../../../assets/shop-banner.webp';
+
 
 const TABS = ['live', 'upcoming', 'ended'];
 
@@ -36,14 +39,18 @@ export default function AuctionsPage() {
     <>
       <Seo title={t('auctions:title')} description={t('auctions:subtitle')} />
 
+      <PageHero
+              image={banner}
+      
+        eyebrow={t('auctions:badge.auction')}
+        title={t('auctions:title')}
+        subtitle={t('auctions:subtitle')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[360px] md:min-h-[440px]"
+        className="bg-dark-gradient"
+      />
       <Container className="py-10">
-        <header>
-          <h1 className="font-display text-3xl font-bold text-base-dark lg:text-4xl">
-            {t('auctions:title')}
-          </h1>
-          <p className="mt-2 text-sm text-hue-500">{t('auctions:subtitle')}</p>
-        </header>
-
         <div role="tablist" aria-label={t('auctions:title')} className="mt-8 flex gap-6 border-b border-border-100">
           {TABS.map((value) => (
             <button

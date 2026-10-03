@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { HiHeart } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
+import { PageHero } from '../../../components/PageHero.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { ProductCard } from '../../../components/ProductCard.jsx';
@@ -31,16 +32,16 @@ export default function FavoritesPage() {
     <>
       <Seo title={t('favorites:title')} description={t('common:tagline')} />
 
+      <PageHero
+        eyebrow={t('common:appName')}
+        title={t('favorites:title')}
+        subtitle={t('common:tagline')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[320px] md:min-h-[400px]"
+        className="bg-dark-gradient"
+      />
       <Container className="py-10">
-        <header>
-          <h1 className="font-display text-3xl font-bold text-base-dark">{t('favorites:title')}</h1>
-          {favorites.length > 0 && (
-            <p className="mt-2 text-sm text-hue-500">
-              {t('favorites:itemsCount', { count: favorites.length })}
-            </p>
-          )}
-        </header>
-
         {favorites.length === 0 ? (
           <div className="mt-8">
             <EmptyState

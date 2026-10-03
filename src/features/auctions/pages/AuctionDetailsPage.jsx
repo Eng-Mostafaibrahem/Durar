@@ -23,6 +23,7 @@ import { AuctionStatusBadge } from '../components/AuctionStatusBadge.jsx';
 import { BidForm } from '../components/BidForm.jsx';
 import { BidHistory, BidHistoryTitle } from '../components/BidHistory.jsx';
 import { WonAuctionCheckout } from '../components/WonAuctionCheckout.jsx';
+import { AuctionImage } from '../components/AuctionImage.jsx';
 import curencyLogo from '../../../assets/Riyal-Icon.png';
 
 export default function AuctionDetailsPage() {
@@ -60,7 +61,7 @@ export default function AuctionDetailsPage() {
   const isWon = auction?.isWinner === true;
   const isHighestBidder = auction?.isHighestBidder === true;
 
-  const countdownTarget = isLive ? auction.endsAt : auction.startsAt;
+  const countdownTarget = isLive ? auction?.endsAt : auction?.startsAt;
 
   return (
     <>
@@ -96,17 +97,12 @@ export default function AuctionDetailsPage() {
         ) : auction ? (
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_24rem]">
             <div className="min-w-0">
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-hue-100">
-                {currentImage ? (
-                  <img
-                    src={currentImage}
-                    alt={auction.name}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="grid h-full place-items-center" />
-                )}
-              </div>
+              <AuctionImage
+                auction={auction}
+                image={currentImage}
+                showBadge={false}
+                className="aspect-[4/3] w-full rounded-2xl bg-hue-100"
+              />
 
               {images.length > 1 && (
                 <div className="mt-3 flex gap-3 overflow-x-auto pb-1">

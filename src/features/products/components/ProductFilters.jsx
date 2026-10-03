@@ -35,6 +35,7 @@ export function ProductFilters({
   onApply,
   onReset,
   onClose,
+  showSearch = true,
 }) {
   const { t } = useTranslation();
   const [draft, setDraft] = useState(() => normalize(active));
@@ -72,13 +73,15 @@ export function ProductFilters({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <Input
-        type="search"
-        label={t('products:filters.search')}
-        value={draft.q}
-        onChange={(event) => update({ q: event.target.value })}
-        placeholder={t('products:filters.search')}
-      />
+      {showSearch && (
+        <Input
+          type="search"
+          label={t('products:filters.search')}
+          value={draft.q}
+          onChange={(event) => update({ q: event.target.value })}
+          placeholder={t('products:filters.search')}
+        />
+      )}
 
       <Select
         label={t('products:filters.category')}

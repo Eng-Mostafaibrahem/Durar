@@ -1,9 +1,18 @@
 import { useTranslation } from 'react-i18next';
-import { HiChatBubbleLeftRight, HiGlobeAlt, HiMapPin, HiShieldCheck, HiSparkles } from 'react-icons/hi2';
+import {
+  HiChatBubbleLeftRight,
+  HiGlobeAlt,
+  HiMapPin,
+  HiShieldCheck,
+  HiSparkles,
+} from 'react-icons/hi2';
 import { Seo } from '../../components/Seo.jsx';
 import { Container } from '../../components/Container.jsx';
+import { PageHero } from '../../components/PageHero.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { paths } from '../../lib/paths.js';
+
+import banner from '../../assets/shop-banner.webp';
 
 const VALUES = [
   { key: 'heritage', icon: HiGlobeAlt },
@@ -26,17 +35,16 @@ export default function AboutPage() {
     <>
       <Seo title={t('pages:about.title')} description={t('pages:about.hero')} />
 
-      <header className="bg-gradient-to-b from-[#044B4A] to-[#002045] text-white">
-        <Container className="py-16 lg:py-20">
-          <p className="text-sm font-medium tracking-wide text-white/60">{t('common:appName')}</p>
-          <h1 className="mt-2 font-display text-4xl font-bold lg:text-5xl">
-            {t('pages:about.title')}
-          </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 lg:text-base">
-            {t('pages:about.hero')}
-          </p>
-        </Container>
-      </header>
+      <PageHero
+        image={banner}
+        eyebrow={t('common:appName')}
+        title={t('pages:about.title')}
+        subtitle={t('pages:about.hero')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[360px] md:min-h-[440px]"
+        className="bg-dark-gradient"
+      />
 
       <Container className="py-12 lg:py-16">
         <section className="grid items-start gap-10 lg:grid-cols-2">
@@ -44,8 +52,12 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl font-bold text-base-dark lg:text-3xl">
               {t('pages:about.storyTitle')}
             </h2>
-            <p className="mt-4 text-sm leading-7 text-base-dark/80">{t('pages:about.storyBody1')}</p>
-            <p className="mt-3 text-sm leading-7 text-base-dark/80">{t('pages:about.storyBody2')}</p>
+            <p className="mt-4 text-sm leading-7 text-base-dark/80">
+              {t('pages:about.storyBody1')}
+            </p>
+            <p className="mt-3 text-sm leading-7 text-base-dark/80">
+              {t('pages:about.storyBody2')}
+            </p>
           </div>
 
           <dl className="rounded-2xl border border-border-100 bg-bg-secondary p-6">

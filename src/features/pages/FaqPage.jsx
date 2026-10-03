@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
 import { Seo } from '../../components/Seo.jsx';
 import { Container } from '../../components/Container.jsx';
+import { PageHero } from '../../components/PageHero.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { paths } from '../../lib/paths.js';
 import { cn } from '../../utils/cn.js';
 import { FAQ_ITEMS, FAQ_TITLE } from '../faq/faqContent.js';
+import banner from '../../../assets/shop-banner.webp';
 
 export default function FaqPage() {
   const { t, i18n } = useTranslation();
@@ -17,13 +19,18 @@ export default function FaqPage() {
     <>
       <Seo title={t('pages:faq.title')} description={t('common:tagline')} />
 
+      <PageHero
+              image={banner}
+
+        title={FAQ_TITLE[lang]}
+        subtitle={t('pages:faq.subtitle')}
+        showSearch={false}
+        showTags={false}
+        minHeight="min-h-[320px] md:min-h-[400px]"
+        className="bg-dark-gradient"
+      />
       <Container className="py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-center font-display text-3xl font-bold text-base-dark sm:text-4xl">
-            {FAQ_TITLE[lang]}
-          </h1>
-          <p className="mt-3 text-center text-sm text-hue-500">{t('pages:faq.subtitle')}</p>
-
           <ul className="mt-8 flex flex-col gap-3">
             {FAQ_ITEMS.map((item, index) => {
               const isOpen = open === index;

@@ -8,7 +8,7 @@ import { paths } from '../../../lib/paths.js';
 import { cn } from '../../../utils/cn.js';
 import { useCategories } from '../../categories/hooks/useCategories.js';
 import { SectionHeader } from './SectionHeader.jsx';
-import cardCover from '../../../assets/category-card.png';
+import cardCover from '../../../assets/category-card.webp';
 
 const TILES = [
   { key: 'rings', id: 1, tone: 'from-secondary-500 to-secondary-700' },

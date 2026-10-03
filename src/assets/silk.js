@@ -6,7 +6,7 @@
 const modules = import.meta.glob('./*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
 
 const BY_NAME = {
-  specialCard: 'specialCard.png',
+  specialCard: 'cardCover.webp',
   card2: 'card-2bg.png',
   card3: 'card-3bg.jpg',
 

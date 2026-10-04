@@ -14,7 +14,7 @@ export function BrandLoader() {
         <span className="animate-pulse">
           <Logo className="h-16 w-auto" />
         </span>
-        <p className="font-display text-2xl font-bold text-primary-500">
+        <p className="font-sans text-2xl font-bold text-primary-500">
           {t('common:appName')}
         </p>
         <span aria-hidden="true" className="h-0.5 w-24 overflow-hidden rounded-full bg-primary-200">

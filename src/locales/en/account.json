@@ -7,6 +7,13 @@
   "favorites": "Favorites",
   "changePassword": "Change password",
   "profileHint": "Your details, orders and bids in one place.",
+  "profileEdit": {
+    "avatar": "Profile photo",
+    "avatarHint": "Choose a new photo from your device",
+    "save": "Save changes",
+    "saved": "Your profile was updated successfully.",
+    "error": "Could not update your profile. Please try again."
+  },
   "itemsCount": "{{count}} saved items",
   "bidsEmptyHint": "Your bids will appear here once you place one.",
   "favoritesEmptyHint": "No saved pieces yet.",

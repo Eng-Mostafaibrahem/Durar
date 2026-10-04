@@ -28,6 +28,16 @@ export async function fetchMe() {
   return apiClient.get(endpoints.auth.me);
 }
 
+/** POST /auth/profile — updates the signed-in user's name, phone, and avatar. */
+export async function updateProfileRequest({ name, phone, avatar }) {
+  const body = new FormData();
+  body.append('name', name);
+  body.append('phone', phone);
+  if (avatar) body.append('avatar', avatar);
+
+  return apiClient.post(endpoints.auth.profile, body);
+}
+
 export function extractToken(authResult) {
   return authResult?.token ?? null;
 }

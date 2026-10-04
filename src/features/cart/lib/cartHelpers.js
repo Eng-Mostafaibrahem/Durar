@@ -29,9 +29,14 @@ export function normalizeCart(cart) {
       unitPrice,
       basePrice,
       discount: Number(item?.discount_percentage ?? product.discount_percentage) || 0,
-      lineTotal: unitPrice * quantity,
+      lineTotal: Number(item?.total ?? unitPrice * quantity) || 0,
       name: product.name ?? item?.name ?? '',
-      image: product.image ?? item?.image ?? product.main_image?.[0] ?? null,
+      image:
+        product.image ??
+        product.cover_image ??
+        item?.image ??
+        product.main_image?.[0] ??
+        null,
       stock: Number(product.stock ?? product.quantity ?? 0),
       categoryId: product.category?.id ?? product.category_id ?? null,
       categoryName: product.category?.name ?? product.category_name ?? null,

@@ -61,11 +61,11 @@ export default function CheckoutSuccessPage() {
               <dl className="flex flex-col gap-3 text-sm">
                 <div className="flex items-center justify-between gap-3">
                   <dt className="text-hue-500">{t('checkout:success.orderNumber')}</dt>
-                  <dd className="font-display font-bold text-base-dark">{order.number}</dd>
+                  <dd className="font-sans font-bold text-base-dark">{order.number}</dd>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <dt className="text-hue-500">{t('cart:total')}</dt>
-                  <dd className="font-display font-bold text-primary-700">
+                  <dd className="font-sans font-bold text-primary-700">
                     {formatCurrency(order.total, { language })}
                   </dd>
                 </div>

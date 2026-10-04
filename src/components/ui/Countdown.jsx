@@ -43,7 +43,7 @@ export function Countdown({
         {isRunning ? `${t('auctions:endsIn')} ${announcement}` : t('auctions:ended')}
       </span>
 
-      <div aria-hidden="true" className="flex items-center gap-3 font-display tabular-nums">
+      <div aria-hidden="true" className="flex items-center gap-3 font-sans tabular-nums">
         {parts.map((part) => (
           <span key={part.key} className="flex items-baseline gap-1">
             <span className={cn('font-bold', compact ? 'text-lg' : 'text-2xl')}>{part.value}</span>

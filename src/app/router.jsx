@@ -123,6 +123,20 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="faq" element={<FaqPage />} />
+
+            <Route
+              path="account"
+              element={
+                <ProtectedRoute redirectTo={unauthorizedRedirect}>
+                  <AccountLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<AccountPage />} />
+              <Route path="orders" element={<OrdersPage />} />
+              <Route path="orders/:id" element={<OrderDetailsPage />} />
+              <Route path="bids" element={<MyBidsPage />} />
+            </Route>
           </Route>
 
           <Route element={<AuthLayout />}>
@@ -130,20 +144,6 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
             <Route path="register" element={<RegisterPage />} />
             <Route path="forgot-password" element={<ForgotPasswordPage />} />
             <Route path="reset-password" element={<ResetPasswordPage />} />
-          </Route>
-
-          <Route
-            path="account"
-            element={
-              <ProtectedRoute redirectTo={unauthorizedRedirect}>
-                <AccountLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<AccountPage />} />
-            <Route path="orders" element={<OrdersPage />} />
-            <Route path="orders/:id" element={<OrderDetailsPage />} />
-            <Route path="bids" element={<MyBidsPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

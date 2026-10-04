@@ -27,6 +27,7 @@ export default function RegisterPage() {
     () => safeReturnTo(searchParams.get('returnTo'), paths.home),
     [searchParams],
   );
+  const loginTarget = `${paths.login}?returnTo=${encodeURIComponent(returnTo)}`;
 
   const {
     register,
@@ -68,7 +69,7 @@ export default function RegisterPage() {
         actions={
           <p>
             {t('auth:register.haveAccount')}{' '}
-            <Link to={paths.login} className="font-medium text-primary-500 hover:text-primary-700">
+            <Link to={loginTarget} className="font-medium text-primary-500 hover:text-primary-700">
               {t('nav:login')}
             </Link>
           </p>

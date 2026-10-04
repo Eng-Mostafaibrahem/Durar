@@ -17,7 +17,7 @@ export default function NotFoundPage() {
           <HiXCircle aria-hidden="true" className="size-8" />
         </span>
 
-        <p className="font-display text-6xl text-primary-500">404</p>
+        <p className="font-sans text-6xl text-primary-500">404</p>
 
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl text-base-dark">{t('pages:notFound.title')}</h1>

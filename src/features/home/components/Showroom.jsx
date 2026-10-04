@@ -54,7 +54,7 @@ export function MuseumSection({ to = '/museum', className }) {
             {CONTENT.info.map((item) => (
               <div key={item.label.en} className="flex flex-col gap-1">
                 <dt className="text-xs text-base-dark/60 sm:text-sm">{item.label[lang]}</dt>
-                <dd className="font-display text-lg font-bold text-primary-500 sm:text-2xl lg:text-3xl">
+                <dd className="font-sans text-lg font-bold text-primary-500 sm:text-2xl lg:text-3xl">
                   {item.value[lang]}
                 </dd>
               </div>

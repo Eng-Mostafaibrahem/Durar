@@ -60,7 +60,7 @@ export function BidHistory({ bids = [], isLoading = false, language = 'ar' }) {
               </p>
             </div>
           </div>
-          <span className="flex shrink-0 items-baseline gap-1.5 font-display font-bold text-primary-700">
+          <span className="flex shrink-0 items-baseline gap-1.5 font-sans font-bold text-primary-700">
             {formatCurrency(bid.amount, { language })}
             <img src={curencyLogo} alt="" className="size-4" />
           </span>

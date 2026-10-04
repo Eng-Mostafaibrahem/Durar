@@ -67,7 +67,7 @@ export function Footer() {
         <LanguageSwitcher className="text-gray-400" />
 
         <nav aria-label={CONTENT.navLabel[lang]}>
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-display text-base sm:gap-x-8 sm:text-xl">
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-sans text-base sm:gap-x-8 sm:text-xl">
             {MAIN_LINKS.map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="transition-opacity hover:opacity-70">
@@ -78,7 +78,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-display text-sm sm:text-lg">
+        <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-sans text-sm sm:text-lg">
           {LEGAL_LINKS.map((l) => (
             <li key={l.to}>
               <Link to={l.to} className="transition-opacity hover:opacity-70">

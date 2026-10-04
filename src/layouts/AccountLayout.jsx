@@ -17,11 +17,11 @@ export function AccountLayout() {
   const { user, logout } = useAuth();
 
   return (
-    <div className="min-h-dvh bg-bg-secondary">
+    <div className="min-h-[calc(100dvh-var(--spacing-header))] bg-bg-secondary">
       <Container className="flex flex-col gap-8 py-10 lg:flex-row">
         <aside className="lg:w-64">
           <div className="rounded-xl border border-border-100 bg-white p-5">
-            <p className="font-display text-lg text-base-dark">
+            <p className="font-sans text-lg text-base-dark">
               {user?.name || t('account:title')}
             </p>
             {user?.email && <p className="mt-1 text-xs text-hue-500">{user.email}</p>}
@@ -54,9 +54,9 @@ export function AccountLayout() {
           </div>
         </aside>
 
-        <main id="main" className="flex-1">
+        <div className="flex-1">
           <Outlet />
-        </main>
+        </div>
       </Container>
     </div>
   );

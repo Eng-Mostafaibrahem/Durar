@@ -162,10 +162,10 @@ export default function OrderDetailsPage() {
                   </dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-border-100 pt-2 text-base">
-                  <dt className="font-display font-bold text-base-dark">
+                  <dt className="font-sans font-bold text-base-dark">
                     {t('account:orderDetails.total')}
                   </dt>
-                  <dd className="font-display font-bold text-primary-700">
+                  <dd className="font-sans font-bold text-primary-700">
                     {formatCurrency(order.total, { language })}
                   </dd>
                 </div>

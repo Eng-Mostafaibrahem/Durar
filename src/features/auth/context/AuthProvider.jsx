@@ -29,11 +29,22 @@ export function AuthProvider({ children }) {
   const beginSession = useCallback(
     async (request) => {
       const result = await request();
-      tokenStore.set(extractToken(result));
+      const token = extractToken(result);
+      tokenStore.set(token);
 
-      await queryClient.invalidateQueries({ queryKey: queryKeys.me });
+      let user = result?.user ?? null;
+      if (user) {
+        queryClient.setQueryData(queryKeys.me, user);
+      } else {
+        user = await queryClient.fetchQuery({
+            queryKey: queryKeys.me,
+            queryFn: fetchMe,
+            staleTime: 5 * 60 * 1000,
+          });
+      }
+      void queryClient.invalidateQueries({ queryKey: queryKeys.cart.all });
 
-      return result?.user ?? null;
+      return user;
     },
     [queryClient],
   );

@@ -28,7 +28,7 @@ export default function CartPage() {
   const removeItem = useRemoveCartItem();
   const clearCart = useClearCart();
 
-  const { items, count, subtotal } = normalizeCart(cart.data);
+  const { items, count, subtotal, total } = normalizeCart(cart.data);
 
   const handleUpdate = (item, quantity) => {
     if (quantity === item.quantity) return;
@@ -115,7 +115,7 @@ export default function CartPage() {
                 <div className="flex items-center justify-between">
                   <dt className="text-hue-500">{t('cart:subtotal')}</dt>
                   <dd className="font-bold text-base-dark">
-                    {formatCurrency(subtotal, { language })}
+                    {formatCurrency(total, { language })}
                   </dd>
                 </div>
                 <div className="flex items-center justify-between">
@@ -126,8 +126,8 @@ export default function CartPage() {
 
               <div className="border-t border-border-100 pt-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-base text-base-dark">{t('cart:total')}</span>
-                  <span className="font-display text-xl font-bold text-primary-700">
+                  <span className="font-sans text-base text-base-dark">{t('cart:total')}</span>
+                  <span className="font-sans text-xl font-bold text-primary-700">
                     {formatCurrency(subtotal, { language })}
                   </span>
                 </div>

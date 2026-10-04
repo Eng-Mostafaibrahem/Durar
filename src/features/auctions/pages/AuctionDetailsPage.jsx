@@ -149,7 +149,7 @@ export default function AuctionDetailsPage() {
                           <dt className="text-xs text-hue-500">
                             {t(`auctions:specs.${key}`, { defaultValue: key })}
                           </dt>
-                          <dd className="mt-1 font-display font-semibold text-base-dark" dir="auto">
+                          <dd className="mt-1 font-sans font-semibold text-base-dark" dir="auto">
                             {value}
                           </dd>
                         </div>
@@ -187,7 +187,7 @@ export default function AuctionDetailsPage() {
                 )}
 
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="font-display text-4xl font-bold text-primary-700">
+                  <span className="font-sans text-4xl font-bold text-primary-700">
                     {formatCurrency(auction.currentPrice, { language })}
                   </span>
                   <img src={curencyLogo} alt="" className="size-6" />
@@ -197,19 +197,19 @@ export default function AuctionDetailsPage() {
                 <div className="mt-6 grid grid-cols-3 gap-3 border-y border-border-100 py-4 text-center">
                   <div>
                     <p className="text-xs text-hue-500">{t('auctions:startingPrice')}</p>
-                    <p className="mt-1 font-display font-bold text-base-dark">
+                    <p className="mt-1 font-sans font-bold text-base-dark">
                       {formatCurrency(auction.startingPrice, { language })}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs text-hue-500">{t('auctions:nextBid')}</p>
-                    <p className="mt-1 font-display font-bold text-base-dark">
+                    <p className="mt-1 font-sans font-bold text-base-dark">
                       {formatCurrency(auction.minimumNextBid, { language })}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs text-hue-500">{t('auctions:bidsLabel')}</p>
-                    <p className="mt-1 font-display font-bold text-base-dark">{auction.bidsCount}</p>
+                    <p className="mt-1 font-sans font-bold text-base-dark">{auction.bidsCount}</p>
                   </div>
                 </div>
 

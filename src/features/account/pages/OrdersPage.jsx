@@ -65,7 +65,7 @@ export default function OrdersPage() {
               >
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <p className="font-display font-bold text-base-dark">{order.number}</p>
+                    <p className="font-sans font-bold text-base-dark">{order.number}</p>
                     <OrderStatusBadge order={order} />
                     {order.paymentStatus && order.paymentStatus !== 'paid' && (
                       <Badge variant="outline" size="sm">
@@ -83,7 +83,7 @@ export default function OrdersPage() {
                 </div>
 
                 <div className="flex items-center justify-between gap-4 sm:justify-end">
-                  <span className="font-display font-bold text-primary-700">
+                  <span className="font-sans font-bold text-primary-700">
                     {formatCurrency(order.total, { language })}
                   </span>
                   <HiChevronLeft

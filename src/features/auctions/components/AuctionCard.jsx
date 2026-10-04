@@ -29,7 +29,7 @@ export function AuctionCard({ auction, language = 'ar' }) {
         <h3 className="line-clamp-1 font-display text-lg font-bold text-base-dark">{auction.name}</h3>
 
         <div className="mt-3 flex items-baseline gap-1.5">
-          <span className="font-display text-lg font-bold text-primary-700">
+          <span className="font-sans text-lg font-bold text-primary-700">
             {formatCurrency(auction.currentPrice, { language })}
           </span>
           <img src={curencyLogo} alt="" decoding="async" className="size-4" />

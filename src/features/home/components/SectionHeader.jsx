@@ -19,7 +19,7 @@ export function SectionHeader({ eyebrow, title, subtitle, action, light = false,
         <h2
           className={cn(
             'font-display text-3xl font-bold sm:text-4xl',
-            light ? 'text-[#667264]' : 'text-[#667264]',
+            light ? 'text-[#030001]' : 'text-[#100003]',
           )}
         >
           {title}

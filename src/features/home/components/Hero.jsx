@@ -19,19 +19,17 @@ export function Hero() {
       <div className="mx-auto flex max-w-screen-2xl flex-col items-start px-5 pb-12 pt-12 sm:px-8 md:h-full md:flex-row md:items-center md:px-[5%] md:pb-0 md:pt-0">
         {/* النص */}
         <div className="flex w-full max-w-[80%] flex-col text-start md:max-w-[52%] md:-translate-y-[6%]">
-          <p className="text-xs font-medium text-white sm:text-sm md:text-[clamp(0.625rem,1.1vw,0.875rem)]">
+          <p className="text-xs font-medium text-[#d3cfb7] sm:text-sm md:text-[clamp(0.625rem,1.1vw,0.875rem)]">
             {t('home:hero.eyebrow')}
           </p>
 
-          <h1 className="mt-3 font-display text-[clamp(2rem,8vw,3.25rem)] font-bold leading-[1.15] text-secondary-200 md:mt-[2%] md:text-[clamp(2rem,5.6vw,4.75rem)]">
+          <h1 className="mt-3 font-display text-[clamp(2rem,8vw,3.25rem)] font-bold leading-[1.5] text-[#d3cfb7] md:mt-[2%] md:text-[clamp(2rem,5.6vw,4.75rem)]">
             {t('home:hero.title')}
-          </h1>
-
-          <h1 className="mt-3 font-display text-[clamp(2rem,8vw,3.25rem)] font-bold leading-[1.15] text-secondary-200 [font-feature-settings:'ccmp'_1,'mark'_1,'mkmk'_1] [font-kerning:normal] [text-rendering:optimizeLegibility] md:mt-[2%] md:text-[clamp(2rem,5.6vw,4.75rem)]">
+            <br />
             {t('home:hero.title2')}
           </h1>
 
-          <p className="mt-4 max-w-[11rem] text-balance text-base leading-relaxed text-[#411119] sm:max-w-sm md:mt-[2%] md:max-w-[100%] md:text-[clamp(0.75rem,1.5vw,1.25rem)]">
+          <p className="mt-4 max-w-[11rem] text-balance text-base leading-relaxed text-primary-700 sm:max-w-sm md:mt-[2%] md:max-w-[100%] md:text-[clamp(0.75rem,1.5vw,1.25rem)]">
             {t('home:hero.subtitle')}
           </p>
 

@@ -1,18 +1,26 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import {
   HiArrowLeft,
   HiUser,
+  HiPencilSquare,
   HiMapPin,
   HiHeart,
   HiShoppingBag,
   HiOutlineScale,
 } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
+import { Button } from '../../../components/ui/Button.jsx';
+import { Input } from '../../../components/ui/Input.jsx';
+import { useUpdateProfile } from '../../auth/hooks/useUpdateProfile.js';
 import { useAuth } from '../../auth/hooks/useAuth.js';
+import { applyFieldErrors, messageFor } from '../../auth/lib/formErrors.js';
 import { useFavorites } from '../../favorites/hooks/useFavorites.js';
 import { loadAddress } from '../../checkout/lib/addressStorage.js';
 import { paths } from '../../../lib/paths.js';
+import { resolveImageUrl } from '../../../utils/media.js';
 
 function ActionCard({ to, icon: Icon, title, hint, itemsCountKey, value = 0 }) {
   const { t } = useTranslation();
@@ -57,6 +65,66 @@ export default function AccountPage() {
   const { user } = useAuth();
   const { count: favoritesCount } = useFavorites();
   const address = loadAddress();
+  const updateProfile = useUpdateProfile();
+  const [isEditing, setIsEditing] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState('');
+  const [submitError, setSubmitError] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: { name: user?.name ?? '', phone: user?.phone ?? '', avatar: undefined },
+  });
+
+  useEffect(() => {
+    if (!avatarPreview) return undefined;
+    return () => URL.revokeObjectURL(avatarPreview);
+  }, [avatarPreview]);
+
+  const onSubmit = (values) => {
+    setSubmitError(null);
+    updateProfile.mutate(
+      {
+        name: values.name.trim(),
+        phone: values.phone.trim(),
+        avatar: values.avatar?.[0],
+      },
+      {
+        onSuccess: () => {
+          reset({ name: values.name.trim(), phone: values.phone.trim(), avatar: undefined });
+          setAvatarPreview('');
+          setIsEditing(false);
+        },
+        onError: (error) => {
+          setSubmitError(messageFor(error, t, 'account:profileEdit.error'));
+          applyFieldErrors(error, setError, { name: 'name', phone: 'phone', avatar: 'avatar' });
+        },
+      },
+    );
+  };
+
+  const avatarUrl = resolveImageUrl(
+    user?.avatar_url ?? user?.avatar ?? user?.profile_photo_url ?? null,
+  );
+
+  const cancelEditing = () => {
+    reset({ name: user?.name ?? '', phone: user?.phone ?? '', avatar: undefined });
+    updateProfile.reset();
+    setAvatarPreview('');
+    setSubmitError(null);
+    setIsEditing(false);
+  };
+
+  const startEditing = () => {
+    reset({ name: user?.name ?? '', phone: user?.phone ?? '', avatar: undefined });
+    updateProfile.reset();
+    setSubmitError(null);
+    setAvatarPreview('');
+    setIsEditing(true);
+  };
 
   return (
     <>
@@ -69,27 +137,128 @@ export default function AccountPage() {
         </div>
 
         <section className="rounded-2xl border border-border-100 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-4">
-            <span className="grid size-14 shrink-0 place-items-center rounded-full bg-primary-500/10 text-primary-500">
-              <HiUser aria-hidden="true" className="size-7" />
-            </span>
-            <div className="min-w-0">
-              <h2 className="truncate font-display text-xl font-bold text-base-dark">
-                {user?.name || t('account:profile')}
-              </h2>
-              {(user?.email || user?.phone) && (
-                <p className="truncate text-sm text-hue-500" dir="auto">
-                  {user.email || user.phone}
+          {!isEditing ? (
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex min-w-0 items-center gap-4">
+                  <span className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-full bg-primary-500/10 text-primary-500">
+                    {avatarUrl ? (
+                      <img
+                        src={avatarUrl}
+                        alt={user?.name || t('account:profile')}
+                        className="size-full object-cover"
+                      />
+                    ) : (
+                      <HiUser aria-hidden="true" className="size-7" />
+                    )}
+                  </span>
+                  <div className="min-w-0">
+                    <h2 className="truncate font-display text-xl font-bold text-base-dark">
+                      {user?.name || t('account:profile')}
+                    </h2>
+                    {(user?.email || user?.phone) && (
+                      <p className="truncate text-sm text-hue-500" dir="auto">
+                        {user.email || user.phone}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <Button variant="outline" size="sm" onClick={startEditing}>
+                  <HiPencilSquare aria-hidden="true" className="size-4" />
+                  {t('common:actions.edit')}
+                </Button>
+              </div>
+
+              <div className="mt-5 space-y-2">
+                <InfoRow label={t('auth:fields.name')} value={user?.name} />
+                <InfoRow label={t('auth:fields.email')} value={user?.email} />
+                <InfoRow label={t('auth:fields.phone')} value={user?.phone} />
+              </div>
+
+              {updateProfile.isSuccess && (
+                <p
+                  role="status"
+                  className="mt-4 rounded-lg bg-success-100 px-4 py-3 text-sm text-success-500"
+                >
+                  {t('account:profileEdit.saved')}
                 </p>
               )}
             </div>
-          </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5" noValidate>
+              <div className="flex items-center gap-4">
+                <span className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-full bg-primary-500/10 text-primary-500">
+                  {avatarPreview || avatarUrl ? (
+                    <img
+                      src={avatarPreview || avatarUrl}
+                      alt={user?.name || t('account:profile')}
+                      className="size-full object-cover"
+                    />
+                  ) : (
+                    <HiUser aria-hidden="true" className="size-7" />
+                  )}
+                </span>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  label={t('account:profileEdit.avatar')}
+                  hint={t('account:profileEdit.avatarHint')}
+                  error={errors.avatar?.message}
+                  disabled={isSubmitting || updateProfile.isPending}
+                  className="file:me-3 file:rounded-md file:border-0 file:bg-primary-500/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary-700"
+                  {...register('avatar', {
+                    onChange: (event) => {
+                      const file = event.target.files?.[0];
+                      setAvatarPreview(file ? URL.createObjectURL(file) : '');
+                    },
+                  })}
+                />
+              </div>
 
-          <div className="mt-5 space-y-2">
-            <InfoRow label={t('auth:fields.name')} value={user?.name} />
-            <InfoRow label={t('auth:fields.email')} value={user?.email} />
-            <InfoRow label={t('auth:fields.phone')} value={user?.phone} />
-          </div>
+              <Input
+                label={t('auth:fields.name')}
+                autoComplete="name"
+                error={errors.name?.message}
+                disabled={isSubmitting || updateProfile.isPending}
+                {...register('name', {
+                  required: t('validation:required'),
+                  minLength: { value: 2, message: t('validation:minLength', { count: 2 }) },
+                })}
+              />
+
+              <Input
+                label={t('auth:fields.phone')}
+                type="tel"
+                dir="ltr"
+                inputMode="tel"
+                autoComplete="tel"
+                error={errors.phone?.message}
+                disabled={isSubmitting || updateProfile.isPending}
+                {...register('phone', {
+                  required: t('validation:required'),
+                  validate: (value) =>
+                    /^\+?[0-9][0-9\s-]{7,14}$/.test(value.trim()) || t('validation:phone'),
+                })}
+              />
+
+              <InfoRow label={t('auth:fields.email')} value={user?.email} />
+
+              {submitError && (
+                <p role="alert" className="rounded-lg bg-error-100 px-4 py-3 text-sm text-error-500">
+                  {submitError}
+                </p>
+              )}
+
+              <div className="flex flex-wrap justify-end gap-3">
+                <Button variant="ghost" onClick={cancelEditing} disabled={updateProfile.isPending}>
+                  {t('common:actions.cancel')}
+                </Button>
+                <Button type="submit" loading={isSubmitting || updateProfile.isPending}>
+                  {t('account:profileEdit.save')}
+                </Button>
+              </div>
+            </form>
+          )}
         </section>
 
         <div className="grid gap-4 sm:grid-cols-2">

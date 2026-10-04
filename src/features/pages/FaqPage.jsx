@@ -8,7 +8,7 @@ import { Button } from '../../components/ui/Button.jsx';
 import { paths } from '../../lib/paths.js';
 import { cn } from '../../utils/cn.js';
 import { FAQ_ITEMS, FAQ_TITLE } from '../faq/faqContent.js';
-import banner from '../../../assets/shop-banner.webp';
+import banner from '../../assets/shop-banner.webp';
 
 export default function FaqPage() {
   const { t, i18n } = useTranslation();

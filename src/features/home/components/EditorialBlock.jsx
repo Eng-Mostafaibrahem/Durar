@@ -28,7 +28,7 @@ export function EditorialBlock() {
                 <dt className="text-sm font-medium text-hue-500">
                   {t(`home:editorial.${spec.key}`)}
                 </dt>
-                <dd className="font-display text-base font-bold text-base-dark">
+                <dd className="font-sans text-base font-bold text-base-dark">
                   {contentText(spec.value)}
                 </dd>
               </div>

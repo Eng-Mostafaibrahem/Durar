@@ -107,7 +107,7 @@ export default function AboutPage() {
             {Array.isArray(stats) &&
               stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <p className="font-display text-3xl font-bold text-white">{stat.value}</p>
+                  <p className="font-sans text-3xl font-bold text-white">{stat.value}</p>
                   <p className="mt-1 text-sm text-white/70">{stat.label}</p>
                 </div>
               ))}

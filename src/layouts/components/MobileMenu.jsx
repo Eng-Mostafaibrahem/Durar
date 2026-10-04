@@ -10,8 +10,6 @@ import { NAV_ITEMS, navLinkClass } from '../lib/navItem.js';
 export function MobileMenu({
   open,
   onClose,
-  activeNav,
-  onItemClick,
   accountTarget,
   accountLabel,
   favoritesCount,
@@ -27,11 +25,8 @@ export function MobileMenu({
               <NavLink
                 to={item.to}
                 end={item.end}
-                onClick={() => {
-                  onItemClick(item);
-                  onClose();
-                }}
-                className={({ isActive }) => navLinkClass({ isActive, item, activeNav, mobile: true })}
+                onClick={onClose}
+                className={({ isActive }) => navLinkClass({ isActive, mobile: true })}
               >
                 {t(item.labelKey)}
               </NavLink>

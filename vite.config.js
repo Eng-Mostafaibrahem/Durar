@@ -6,6 +6,17 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
+    proxy: {
+      '/api': {
+        target: 'https://api.durar.rouqy-jewellery.com',
+        changeOrigin: true,
+        cookieDomainRewrite: '',
+      },
+      '/storage': {
+        target: 'https://api.durar.rouqy-jewellery.com',
+        changeOrigin: true,
+      },
+    },
   },
   optimizeDeps: {
     // Pre-bundle at startup so newly imported icon packages (or any dep) never

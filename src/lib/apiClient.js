@@ -2,7 +2,9 @@ import { tokenStore } from './tokenStore.js';
 import i18n from './i18n.js';
 import { paths } from './paths.js';
 
-const BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+const BASE_URL = (
+  import.meta.env.DEV ? '/api' : import.meta.env.VITE_API_URL || ''
+).replace(/\/+$/, '');
 const CREDENTIALS =
   (import.meta.env.VITE_API_CREDENTIALS || 'include') === 'omit' ? 'omit' : 'include';
 

@@ -18,7 +18,7 @@ function Stat({ label, children }) {
   return (
     <div className="flex flex-col gap-1 text-start">
       <span className="text-xs text-base-dark/60">{label}</span>
-      <span className="font-display text-lg font-semibold text-primary-500">{children}</span>
+      <span className="font-sans text-lg font-semibold text-primary-500">{children}</span>
     </div>
   );
 }
@@ -34,7 +34,7 @@ export function FeaturedAuction() {
   const isUpcoming = auction?.status === 'upcoming';
   const countdownTarget = isLive ? auction.endsAt : isUpcoming ? auction.startsAt : null;
 
-  if (auction === null) return null;
+  if (query.isError || auction == null) return null;
 
   return (
     <section className="py-16 text-white sm:py-20">

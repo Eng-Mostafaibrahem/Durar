@@ -13,6 +13,7 @@ export const endpoints = {
     login: '/auth/login',
     logout: '/auth/logout',
     me: '/auth/me',
+    profile: '/auth/profile',
   },
   products: {
     list: '/products',

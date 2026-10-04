@@ -6,7 +6,7 @@ import { Container } from '../../components/Container.jsx';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { paths } from '../../lib/paths.js';
-import { useLockBodyScroll, useOnEscape } from '../../hooks/index.js';
+import { useOnEscape } from '../../hooks/index.js';
 import { useAuth } from '../../features/auth/hooks/useAuth.js';
 import { useCart } from '../../features/cart/hooks/useCart.js';
 import { useCartDrawer } from '../../features/cart/hooks/useCartDrawer.js';
@@ -24,18 +24,8 @@ export function Navbar() {
   const { openCart } = useCartDrawer();
   const { count: favoritesCount } = useFavorites();
   const cartCount = normalizeCart(useCart().data).count;
-  const { pathname } = useLocation();
-
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState(null);
-
-  const [previousPathname, setPreviousPathname] = useState(pathname);
-  if (previousPathname !== pathname) {
-    setPreviousPathname(pathname);
-    if (pathname !== paths.shop) setActiveNav(null);
-  }
-
-  useLockBodyScroll(isMenuOpen);
   useOnEscape(isMenuOpen, () => setIsMenuOpen(false));
 
   // لو الشاشة كبرت والمنيو مفتوحة، نقفله عشان الـ scroll lock ما يفضلش شغال
@@ -46,8 +36,10 @@ export function Navbar() {
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  const handleNavClick = (item) => setActiveNav(item.shopLink ? item.labelKey : null);
-  const accountTarget = isAuthenticated ? paths.account : paths.login;
+  const returnTo = `${location.pathname}${location.search}${location.hash}`;
+  const accountTarget = isAuthenticated
+    ? paths.account
+    : `${paths.login}?returnTo=${encodeURIComponent(returnTo)}`;
   const accountLabel = isAuthenticated ? t('nav:account') : t('nav:login');
 
   return (
@@ -78,8 +70,7 @@ export function Navbar() {
                   <NavLink
                     to={item.to}
                     end={item.end}
-                    onClick={() => handleNavClick(item)}
-                    className={({ isActive }) => navLinkClass({ isActive, item, activeNav })}
+                    className={({ isActive }) => navLinkClass({ isActive })}
                   >
                     {t(item.labelKey)}
                   </NavLink>
@@ -133,8 +124,6 @@ export function Navbar() {
       <MobileMenu
         open={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        activeNav={activeNav}
-        onItemClick={handleNavClick}
         accountTarget={accountTarget}
         accountLabel={accountLabel}
         favoritesCount={favoritesCount}

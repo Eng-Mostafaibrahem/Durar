@@ -23,6 +23,7 @@ export default function LoginPage() {
   const [submitError, setSubmitError] = useState(null);
 
   const returnTo = useMemo(() => safeReturnTo(searchParams.get('returnTo')), [searchParams]);
+  const registerTarget = `${paths.register}?returnTo=${encodeURIComponent(returnTo)}`;
 
   const {
     register,
@@ -57,7 +58,7 @@ export default function LoginPage() {
             <p>
               {t('auth:login.noAccount')}{' '}
               <Link
-                to={paths.register}
+                to={registerTarget}
                 className="font-medium text-primary-500 hover:text-primary-700"
               >
                 {t('nav:register')}

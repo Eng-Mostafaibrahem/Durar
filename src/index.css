@@ -1,11 +1,25 @@
-@import '@fontsource/amiri/400.css';
-@import '@fontsource/amiri/700.css';
 @import '@fontsource/ibm-plex-sans-arabic/300.css';
 @import '@fontsource/ibm-plex-sans-arabic/400.css';
 @import '@fontsource/ibm-plex-sans-arabic/500.css';
 @import '@fontsource/ibm-plex-sans-arabic/600.css';
 @import '@fontsource/ibm-plex-sans-arabic/700.css';
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Guesswhat Exceptional';
+  src: url('./assets/fonts/GUESSWHAT-EXCEPTIONAL.OTF') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '29LT Azahar';
+  src: url('./assets/fonts/ALFONT_COM_29LT-AZAHAR-AL-TN-TRIAL-BOLD.TTF') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
 
 @custom-variant rtl (&:where([dir='rtl'], [dir='rtl'] *));
 @custom-variant ltr (&:where([dir='ltr'], [dir='ltr'] *));
@@ -55,8 +69,8 @@
   --color-error-100: #f8e4e4;
 
   /* ---- Typography ---- */
-  --font-display: 'Amiri', 'Noto Naskh Arabic', Georgia, serif;
-  --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  --font-display: '29LT Azahar', 'IBM Plex Sans Arabic', Georgia, serif;
+  --font-sans: 'Guesswhat Exceptional', 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
 
   --text-hero: 3.5rem;
   --text-hero--line-height: 1.15;
@@ -103,7 +117,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.3;
-    color:#667264;
+    color:#5c0a18;
   }
 
   /* Arabic numerals stay Western (٠١٢ vs 012) for price readability across both locales. */

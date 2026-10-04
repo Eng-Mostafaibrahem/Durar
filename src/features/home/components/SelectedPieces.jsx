@@ -24,7 +24,7 @@ export function SelectedPieces() {
           action={
             <Link
               to={paths.shop}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary-500 transition-colors hover:text-primary-600"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 transition-colors hover:text-primary-600"
             >
               {t('common:actions.viewAll')}
               <HiArrowRight

@@ -473,8 +473,8 @@ function SummarySidebar({
             </div>
           )}
           <div className="flex items-center justify-between border-t border-border-100 pt-2 text-base">
-            <dt className="font-display text-base-dark">{t('cart:total')}</dt>
-            <dd className="font-display font-bold text-primary-700">
+            <dt className="font-sans text-base-dark">{t('cart:total')}</dt>
+            <dd className="font-sans font-bold text-primary-700">
               {formatCurrency(Math.max(subtotal - couponDiscount, 0), { language })}
             </dd>
           </div>

@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { HiExclamationTriangle, HiOutlineSwatch } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
 import { PageHero } from '../../../components/PageHero.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
+import { Pagination } from '../../../components/ui/Pagination.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { useCategory } from '../hooks/useCategory.js';
 import { useProducts } from '../../products/hooks/useProducts.js';
@@ -16,9 +17,19 @@ import banner from '../../../assets/shop-banner.webp';
 export default function CollectionPage() {
   const { t } = useTranslation();
   const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Math.max(1, Number(searchParams.get('page')) || 1);
 
   const category = useCategory(id);
-  const products = useProducts({ category_id: id });
+  const products = useProducts({ category_id: id, page });
+
+  const changePage = (nextPage) => {
+    const next = new URLSearchParams(searchParams);
+    if (nextPage <= 1) next.delete('page');
+    else next.set('page', String(nextPage));
+    setSearchParams(next);
+    document.getElementById('collection-products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   if (category.isPending || products.isPending) {
     return (
@@ -63,7 +74,7 @@ export default function CollectionPage() {
         className="bg-dark-gradient"
       />
       <Container className="py-10">
-        <div className="mt-10">
+        <div id="collection-products" className="mt-10 scroll-mt-24">
           {products.isError ? (
             <EmptyState
               icon={HiExclamationTriangle}
@@ -83,19 +94,13 @@ export default function CollectionPage() {
             />
           ) : (
             <>
-              <ProductGrid products={products.data.pages.flatMap((page) => page.items)} />
-              {products.hasNextPage && (
-                <div className="mt-10 flex justify-center">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    onClick={() => products.fetchNextPage()}
-                    loading={products.isFetchingNextPage}
-                  >
-                    {t('common:actions.loadMore')}
-                  </Button>
-                </div>
-              )}
+              <ProductGrid products={products.data.items} />
+              <Pagination
+                page={products.data.meta.page}
+                lastPage={products.data.meta.lastPage}
+                onPageChange={changePage}
+                className="mt-10"
+              />
             </>
           )}
         </div>

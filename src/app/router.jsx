@@ -14,6 +14,7 @@ import { detectDirection } from '../locales/index.js';
 const HomePage = lazy(() => import('../features/home/pages/HomePage.jsx'));
 const ShopPage = lazy(() => import('../features/products/pages/ShopPage.jsx'));
 const ProductDetailsPage = lazy(() => import('../features/products/pages/ProductDetailsPage.jsx'));
+const CategoriesPage = lazy(() => import('../features/categories/pages/CategoriesPage.jsx'));
 const CollectionPage = lazy(() => import('../features/categories/pages/CollectionPage.jsx'));
 const AuctionsPage = lazy(() => import('../features/auctions/pages/AuctionsPage.jsx'));
 const AuctionDetailsPage = lazy(() => import('../features/auctions/pages/AuctionDetailsPage.jsx'));
@@ -102,6 +103,7 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
 
             <Route path="shop" element={<ShopPage />} />
             <Route path="shop/:id" element={<ProductDetailsPage />} />
+            <Route path="collections" element={<CategoriesPage />} />
             <Route path="collections/:id" element={<CollectionPage />} />
 
             <Route path="auctions" element={<AuctionsPage />} />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGem } from 'react-icons/fa';
 import { cn } from '../../../utils/cn.js';
-import { silkBackgroundStyle } from '../../../assets/silk.js';
+import { silkBackgroundStyle } from '../../../assets/card-bg/silk.js';
 
 const BASE_URL = (import.meta.env.VITE_IMAGES_BASE_URL ?? '').replace(/\/+$/, '');
 

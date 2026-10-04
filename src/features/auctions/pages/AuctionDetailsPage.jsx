@@ -24,7 +24,7 @@ import { BidForm } from '../components/BidForm.jsx';
 import { BidHistory, BidHistoryTitle } from '../components/BidHistory.jsx';
 import { WonAuctionCheckout } from '../components/WonAuctionCheckout.jsx';
 import { AuctionImage } from '../components/AuctionImage.jsx';
-import curencyLogo from '../../../assets/Riyal-Icon.png';
+import curencyLogo from '../../../assets/Riyal-Icon.webp';
 
 export default function AuctionDetailsPage() {
   const { t, i18n } = useTranslation();

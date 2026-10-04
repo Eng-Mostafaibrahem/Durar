@@ -7,8 +7,8 @@ import { Container } from '../../components/Container.jsx';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher.jsx';
 import { paths } from '../../lib/paths.js';
 import topoPattern from '../../assets/Vector.svg';
-import vision2030 from '../../assets/vision.png';
-import logo from '../../assets/logo.svg';
+import vision2030 from '../../assets/vision.webp';
+import logo from '../../assets/logo 4.png';
 
 const CONTENT = {
   copyright: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },
@@ -61,7 +61,7 @@ export function Footer() {
 
       <Container className="flex flex-col items-center gap-5 pb-6 pt-10 text-center sm:gap-6 sm:pt-12">
         <Link to={paths.home} aria-label={CONTENT.home[lang]}>
-          <img src={logo} alt="" decoding="async" className="h-12 w-auto sm:h-14" />
+          <img src={logo} alt="" decoding="async" className="h-32 w-auto sm:h-32" />
         </Link>
 
         <LanguageSwitcher className="text-gray-400" />

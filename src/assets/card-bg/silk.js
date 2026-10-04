@@ -7,8 +7,8 @@ const modules = import.meta.glob('./*.{png,jpg,jpeg,webp}', { eager: true, impor
 
 const BY_NAME = {
   specialCard: 'cardCover.webp',
-  card2: 'card-2bg.png',
-  card3: 'card-3bg.jpg',
+  card2: 'card-2bg.webp',
+  card3: 'card-3bg.webp',
 
 };
 const registry = new Map();

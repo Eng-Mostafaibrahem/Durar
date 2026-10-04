@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../../utils/cn.js';
-import bannerImage from '../../../assets/museum3.png';
+import bannerImage from '../../../assets/museum3.webp';
 
 const CONTENT = {
   title: { ar: 'اكتشف القصة على أرض الواقع', en: 'Discover the story in person' },

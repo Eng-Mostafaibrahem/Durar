@@ -1,18 +1,14 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../api/products.js';
 import { queryKeys } from '../../../lib/queryKeys.js';
 
 /**
- * Paginated product list driven by URL filters (see ShopPage).
- * `filters` is the stable object used as the query key.
+ * One server page at a time, driven by URL filters and the `page` parameter.
  */
 export function useProducts(filters) {
-  return useInfiniteQuery({
+  return useQuery({
     queryKey: queryKeys.products.list(filters),
-    queryFn: ({ pageParam = 1 }) => fetchProducts({ ...filters, page: pageParam }),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) =>
-      lastPage.meta.page < lastPage.meta.lastPage ? lastPage.meta.page + 1 : undefined,
+    queryFn: () => fetchProducts({ ...filters, search: filters.q || filters.navQ }),
     staleTime: 60 * 1000,
   });
 }

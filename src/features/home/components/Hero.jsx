@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { paths } from '../../../lib/paths';
-import heroImage from '../../../assets/hero/card 2.png';
+import heroImage from '../../../assets/hero/card 2.webp';
 
 export function Hero() {
   const { t, i18n } = useTranslation(['home', 'common']);

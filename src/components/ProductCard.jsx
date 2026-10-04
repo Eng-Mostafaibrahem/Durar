@@ -4,11 +4,11 @@
   import { HiHeart } from 'react-icons/hi2';
   import { cn } from '../utils/cn.js';
   import { paths } from '../lib/paths.js';
-  import { silkBackgroundStyle } from '../assets/silk.js';
+  import { silkBackgroundStyle } from '../assets/card-bg/silk.js';
   import { formatCurrency, formatDiscountPercent } from '../utils/formatCurrency.js';
   import { Badge } from './ui/Badge.jsx';
   import { useFavorites } from '../features/favorites/hooks/useFavorites.js';
-  import curencyLogo from '../assets/Riyal-Icon.png';
+  import curencyLogo from '../assets/Riyal-Icon.webp';
 
   export function ProductCard({ product, unavailable = false, className }) {
     const { t, i18n } = useTranslation();

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { formatDate, formatDateTime } from '../../../utils/formatDate.js';
 import { formatCurrency } from '../../../utils/formatCurrency.js';
 import { Skeleton } from '../../../components/ui/Skeleton.jsx';
-import curencyLogo from '../../../assets/Riyal-Icon.png';
+import curencyLogo from '../../../assets/Riyal-Icon.webp';
 
 export function BidHistoryTitle({ count }) {
   const { t } = useTranslation();

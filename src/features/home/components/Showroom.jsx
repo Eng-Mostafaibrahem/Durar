@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../../utils/cn.js';
-import museumImage from '../../../assets/museum2.png';
+import museumImage from '../../../assets/museum.webp';
 import { Container } from '../../../components/Container.jsx';
 
 const CONTENT = {

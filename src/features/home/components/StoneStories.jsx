@@ -4,9 +4,9 @@ import { cn } from '../../../utils/cn.js';
 import { SectionHeader } from './SectionHeader.jsx';
 import { contentText, stoneStories } from '../assets/content.js';
 
-import storyCover1 from '../../../assets/story1.png';
-import storyCover2 from '../../../assets/story2.png';
-import storyCover3 from '../../../assets/story3.png';
+import storyCover1 from '../../../assets/story1.webp';
+import storyCover2 from '../../../assets/story2.webp';
+import storyCover3 from '../../../assets/story3.webp';
 
 const PICTURES = {
   rarity: storyCover1,

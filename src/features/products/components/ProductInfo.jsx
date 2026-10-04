@@ -10,7 +10,7 @@ import { Badge } from '../../../components/ui/Badge.jsx';
 import { QuantityStepper } from './QuantityStepper.jsx';
 import { useAddToCart } from '../../cart/hooks/useCart.js';
 import { useFavorites } from '../../favorites/hooks/useFavorites.js';
-import currencyLogo from '../../../assets/Riyal-Icon.png';
+import currencyLogo from '../../../assets/Riyal-Icon.webp';
 
 // يختار name_ar / name_en حسب اللغة، ولو الحقل ناقص يرجع للتاني
 function pickLocalized(obj, field, language) {

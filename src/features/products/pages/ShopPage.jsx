@@ -13,13 +13,14 @@ import { Container } from '../../../components/Container.jsx';
 import { Drawer } from '../../../components/ui/Drawer.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
 import { Select } from '../../../components/ui/Select.jsx';
+import { Pagination } from '../../../components/ui/Pagination.jsx';
 import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { useProducts } from '../hooks/useProducts.js';
 import { useCategories } from '../../categories/hooks/useCategories.js';
 import { ProductFilters } from '../components/ProductFilters.jsx';
 import { ProductGrid } from '../components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../components/ProductListSkeleton.jsx';
-import { isOnOffer } from '../lib/productOffer.js';
+import { filterAndSortProducts } from '../lib/filterProducts.js';
 import { cn } from '../../../utils/cn.js';
 import { PageHero } from '../../../components/PageHero.jsx';
 import banner from '../../../assets/shop-banner.webp';
@@ -29,6 +30,7 @@ const SORT_OPTIONS = ['newest', 'priceAsc', 'priceDesc', 'popular'];
 function readFilters(searchParams) {
   return {
     q: searchParams.get('q') ?? '',
+    navQ: searchParams.get('nav_q') ?? '',
     category_id: searchParams.get('category_id') ?? '',
     type: searchParams.get('type') ?? '',
     price_min: searchParams.get('price_min') ?? '',
@@ -36,6 +38,7 @@ function readFilters(searchParams) {
     availability: searchParams.get('availability') ?? '',
     onOffer: searchParams.get('onOffer') ?? '',
     sort: searchParams.get('sort') ?? 'newest',
+    page: Math.max(1, Number(searchParams.get('page')) || 1),
   };
 }
 
@@ -62,28 +65,38 @@ export default function ShopPage() {
   const categories = useCategories();
 
   const rawProducts = useMemo(
-    () => productsQuery.data?.pages.flatMap((page) => page.items) ?? [],
+    () => productsQuery.data?.items ?? [],
     [productsQuery.data],
   );
 
-  // The backend has no discount filter, so "on offer" is applied client-side.
   const products = useMemo(
-    () => (filters.onOffer === '1' ? rawProducts.filter(isOnOffer) : rawProducts),
-    [rawProducts, filters.onOffer],
+    () => filterAndSortProducts(rawProducts, filters),
+    [rawProducts, filters],
   );
 
   const serverCount =
-    typeof productsQuery.data?.pages[0]?.meta?.total === 'number'
-      ? productsQuery.data.pages[0].meta.total
+    typeof productsQuery.data?.meta?.total === 'number'
+      ? productsQuery.data.meta.total
       : products.length;
 
-  const filteredCount = filters.onOffer === '1' ? products.length : serverCount;
+  const hasClientFilters = Boolean(
+    filters.type || filters.price_min || filters.price_max || filters.availability || filters.onOffer,
+  );
+  const filteredCount = hasClientFilters ? products.length : serverCount;
 
   const hasActiveFilters = Object.entries(filters).some(
-    ([key, value]) => key !== 'sort' && value !== '',
+    ([key, value]) => key !== 'sort' && key !== 'page' && value !== '',
   );
 
   const apply = (patch) => commitFilters(searchParams, setSearchParams, patch);
+
+  const changePage = (page) => {
+    const next = new URLSearchParams(searchParams);
+    if (page <= 1) next.delete('page');
+    else next.set('page', String(page));
+    setSearchParams(next);
+    document.getElementById('product-results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const reset = () => setSearchParams({});
 
@@ -107,7 +120,11 @@ export default function ShopPage() {
         searchValue={filters.q}
         searchPlaceholder={t('products:filters.search')}
         searchButtonLabel={t('common:actions.search')}
-        onSearch={(q) => commitFilters(searchParams, setSearchParams, { q })}
+        onSearch={(q) => {
+          const next = new URLSearchParams(searchParams);
+          next.delete('nav_q');
+          commitFilters(next, setSearchParams, { q });
+        }}
         minHeight="min-h-[420px] md:min-h-[520px]"
         className="bg-dark-gradient"
         filterAction={
@@ -183,7 +200,7 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="mt-6">
+            <div id="product-results" className="mt-6 scroll-mt-24">
               {productsQuery.isPending ? (
                 <ProductListSkeleton count={8} />
               ) : productsQuery.isError ? (
@@ -213,18 +230,12 @@ export default function ShopPage() {
               ) : (
                 <>
                   <ProductGrid products={products} />
-                  {productsQuery.hasNextPage && (
-                    <div className="mt-10 flex justify-center">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={() => productsQuery.fetchNextPage()}
-                        loading={productsQuery.isFetchingNextPage}
-                      >
-                        {t('common:actions.loadMore')}
-                      </Button>
-                    </div>
-                  )}
+                  <Pagination
+                    page={productsQuery.data.meta.page}
+                    lastPage={productsQuery.data.meta.lastPage}
+                    onPageChange={changePage}
+                    className="mt-10"
+                  />
                 </>
               )}
             </div>

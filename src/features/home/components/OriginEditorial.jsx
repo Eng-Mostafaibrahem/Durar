@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { cn } from '../../../utils/cn.js';
-import galleryImage from '../../../assets/museum.png';
+import galleryImage from '../../../assets/museum.webp';
 
 export function OriginEditorial() {
   const { i18n } = useTranslation();

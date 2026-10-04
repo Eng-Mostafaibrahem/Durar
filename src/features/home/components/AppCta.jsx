@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { cn } from '../../../utils/cn.js';
-import phoneImage from '../../../assets/phone.png';
+import phoneImage from '../../../assets/phone.webp';
 import topoPattern from '../../../assets/vector.svg';
-import appStoreBadge from '../../../assets/IOS.png';
-import googlePlayBadge from '../../../assets/playStore.png';
+import appStoreBadge from '../../../assets/IOS.webp';
+import googlePlayBadge from '../../../assets/playStore.webp';
 
 const CONTENT = {
   title: { ar: 'حمل تطبيقنا الآن', en: 'Download our app now' },

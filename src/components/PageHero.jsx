@@ -87,7 +87,7 @@ export  function PageHero({
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-5 px-4 text-center text-white">
         {eyebrow && <p className="text-sm font-semibold tracking-wide text-white/80">{eyebrow}</p>}
 
-        <h1 className="text-4xl font-bold leading-tight md:text-6xl">{heroTitle}</h1>
+        <h1 className="text-4xl font-bold leading-tight md:text-6xl  text-white">{heroTitle}</h1>
 
         {heroSubtitle && (
           <p className="max-w-xl text-sm text-white/80 md:text-base">{heroSubtitle}</p>

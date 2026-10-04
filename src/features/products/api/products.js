@@ -6,9 +6,34 @@ import { normalizePage } from '../../../lib/response.js';
  * GET /products — paginated storefront list.
  * `filter` picks landing/curated sets: best_selling | newest | rare.
  */
-export async function fetchProducts({ category_id, page = 1, per_page, search, filter } = {}) {
+export async function fetchProducts({
+  category_id,
+  page = 1,
+  per_page,
+  search,
+  q,
+  filter,
+  type,
+  price_min,
+  price_max,
+  availability,
+  onOffer,
+  sort,
+} = {}) {
   const payload = await apiClient.get(endpoints.products.list, {
-    params: { category_id, page, per_page, search, filter },
+    params: {
+      category_id,
+      page,
+      per_page,
+      search: search ?? q,
+      filter,
+      type,
+      price_min,
+      price_max,
+      availability,
+      on_offer: onOffer === '1' ? 1 : undefined,
+      sort,
+    },
   });
 
   return normalizePage(payload);

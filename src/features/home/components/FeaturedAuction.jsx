@@ -11,8 +11,8 @@ import { formatCurrency } from '../../../utils/formatCurrency.js';
 import { cn } from '../../../utils/cn.js';
 import { AuctionStatusBadge } from '../../auctions/components/AuctionStatusBadge.jsx';
 import { useFeaturedAuction } from '../hooks/useFeaturedAuction.js';
-import curencyLogo from '../../../assets/Riyal-Icon.png';
-import cardCover from '../../../assets/specialCard.png';
+import curencyLogo from '../../../assets/Riyal-Icon.webp';
+import cardCover from '../../../assets/specialCard.webp';
 
 function Stat({ label, children }) {
   return (

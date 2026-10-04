@@ -4,8 +4,8 @@ import { Button } from '../../../components/ui/Button.jsx';
 import { Container } from '../../../components/Container.jsx';
 import { paths } from '../../../lib/paths.js';
 import { contentText, editorialSpecs } from '../assets/content.js';
-import cardCover from '../../../assets/specialCard.png';
-import cardImage from '../../../assets/stone.png';
+import cardCover from '../../../assets/specialCard.webp';
+import cardImage from '../../../assets/stone.webp';
 
 export function EditorialBlock() {
   const { t } = useTranslation();

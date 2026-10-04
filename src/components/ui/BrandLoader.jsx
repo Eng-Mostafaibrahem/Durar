@@ -12,11 +12,11 @@ export function BrandLoader() {
     >
       <div className="flex flex-col items-center gap-5">
         <span className="animate-pulse">
-          <Logo className="h-16 w-auto" />
+          <Logo className="h-64 w-auto" />
         </span>
-        <p className="font-sans text-2xl font-bold text-primary-500">
+        {/* <p className="font-sans text-2xl font-bold text-primary-500">
           {t('common:appName')}
-        </p>
+        </p> */}
         <span aria-hidden="true" className="h-0.5 w-24 overflow-hidden rounded-full bg-primary-200">
           <span className="block h-full w-1/2 animate-loading-bar rounded-full bg-primary-500" />
         </span>

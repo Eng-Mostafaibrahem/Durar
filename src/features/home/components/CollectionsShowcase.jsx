@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container } from '../../../components/Container.jsx';
 import { Skeleton } from '../../../components/ui/Skeleton.jsx';
+import { Button } from '../../../components/ui/Button.jsx';
+import { HiArrowLeft } from 'react-icons/hi2';
 import { localized } from '../../../lib/response.js';
 import { resolveImageUrl } from '../../../utils/media.js';
 import { paths } from '../../../lib/paths.js';
 import { cn } from '../../../utils/cn.js';
 import { useCategories } from '../../categories/hooks/useCategories.js';
 import { SectionHeader } from './SectionHeader.jsx';
-import cardCover from '../../../assets/category-card.webp';
+import cardCover from '../../../assets/card-bg/category-card.webp';
 
 const TILES = [
   { key: 'rings', id: 1, tone: 'from-secondary-500 to-secondary-700' },
@@ -32,6 +34,12 @@ export function CollectionsShowcase() {
         <SectionHeader
           eyebrow={t('home:collections.subtitle')}
           title={t('home:collections.title')}
+          action={
+            <Button to={paths.collections} variant="outline" size="sm">
+              {t('home:featured.viewAll')}
+              <HiArrowLeft aria-hidden="true" className="size-4 rtl:rotate-180" />
+            </Button>
+          }
         />
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">

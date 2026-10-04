@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { FaGem } from 'react-icons/fa';
 import { cn } from '../../../utils/cn.js';
 import { Badge } from '../../../components/ui/Badge.jsx';
-import cardCover from '../../../assets/card-3bg.jpg';
+import cardCover from '../../../assets/card-bg/card-3bg.webp';
 
 export function AuctionImage({ auction, image = auction?.image, showBadge = true, className }) {
   const { t } = useTranslation();

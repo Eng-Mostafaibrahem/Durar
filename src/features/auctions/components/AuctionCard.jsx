@@ -7,7 +7,7 @@ import { formatCurrency } from '../../../utils/formatCurrency.js';
 import { Countdown } from '../../../components/ui/Countdown.jsx';
 import { AuctionImage } from './AuctionImage.jsx';
 import { AuctionStatusBadge } from './AuctionStatusBadge.jsx';
-import curencyLogo from '../../../assets/Riyal-Icon.png';
+import curencyLogo from '../../../assets/Riyal-Icon.webp';
 
 export function AuctionCard({ auction, language = 'ar' }) {
   const { t } = useTranslation();

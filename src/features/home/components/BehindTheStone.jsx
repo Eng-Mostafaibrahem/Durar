@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '../../../utils/cn.js';
-import nizak from '../../../assets/nizak1.png';
-import nizak2 from '../../../assets/nizak2.png';
-import nizak3 from '../../../assets/nizak3.png';
-import nizak4 from '../../../assets/nizak4.png';
+import nizak from '../../../assets/nizak1.webp';
+import nizak2 from '../../../assets/nizak2.webp';
+import nizak3 from '../../../assets/nizak3.webp';
+import nizak4 from '../../../assets/nizak4.webp';
 
 const ITEMS = [
   {

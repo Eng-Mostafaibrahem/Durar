@@ -84,7 +84,10 @@ function toApiError(response, data, url) {
   });
 }
 
-async function request(path, { method = 'GET', body, headers = {}, signal, params, _retry } = {}) {
+async function request(
+  path,
+  { method = 'GET', body, headers = {}, signal, params, unwrapData = true, _retry } = {},
+) {
   const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
   const url = `${BASE_URL}${path}${buildQueryString(params)}`;
   const token = tokenStore.get();
@@ -120,6 +123,7 @@ async function request(path, { method = 'GET', body, headers = {}, signal, param
   // The backend wraps everything in { success, message, data }. Unwrap exactly
   // one level; a paginated `data` keeps its own `data` array + pagination
   // fields so feature api/*.js can read both.
+  if (!unwrapData) return data;
   return data && typeof data === 'object' && Object.hasOwn(data, 'data') ? data.data : data;
 }
 

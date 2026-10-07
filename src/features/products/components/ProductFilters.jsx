@@ -12,6 +12,7 @@ const EMPTY_FILTERS = {
   price_max: '',
   availability: false,
   onOffer: false,
+  rare: false,
 };
 
 function normalize(filters) {
@@ -23,10 +24,9 @@ function normalize(filters) {
     price_max: filters?.price_max ?? '',
     availability: filters?.availability === '1',
     onOffer: filters?.onOffer === '1',
+    rare: filters?.rare === '1',
   };
 }
-
-const TYPE_OPTIONS = ['stone', 'meteorite', 'jewelry'];
 
 export function ProductFilters({
   active,
@@ -49,6 +49,7 @@ export function ProductFilters({
       q: draft.q.trim(),
       availability: draft.availability ? '1' : '',
       onOffer: draft.onOffer ? '1' : '',
+      rare: draft.rare ? '1' : '',
     });
     onClose?.();
   };
@@ -63,10 +64,10 @@ export function ProductFilters({
     ? []
     : categories.map((category) => ({ value: category.id, label: category.name }));
 
-  const typeOptions = [
-    { value: '', label: t('products:filters.all') },
-    ...TYPE_OPTIONS.map((type) => ({ value: type, label: t(`products:types.${type}`) })),
-  ];
+  // const typeOptions = [
+  //   { value: '', label: t('products:filters.all') },
+  //   ...TYPE_OPTIONS.map((type) => ({ value: type, label: t(`products:types.${type}`) })),
+  // ];
 
   const checkboxClass =
     'size-4 shrink-0 rounded border-border-300 text-primary-500 focus:ring-primary-500/40 focus:ring-2';
@@ -91,12 +92,12 @@ export function ProductFilters({
         placeholder={t('products:filters.all')}
       />
 
-      <Select
+      {/* <Select
         label={t('products:filters.type')}
         value={draft.type}
         onChange={(event) => update({ type: event.target.value })}
         options={typeOptions}
-      />
+      /> */}
 
       <fieldset>
         <legend className="text-sm font-medium text-base-dark">
@@ -127,27 +128,20 @@ export function ProductFilters({
       </fieldset>
 
       <fieldset className="flex flex-col gap-3">
-        <legend className="text-sm font-medium text-base-dark">
-          {t('products:filters.availability')}
-        </legend>
         <label className="flex items-center gap-3 text-sm text-base-dark">
           <input
             type="checkbox"
             className={checkboxClass}
-            checked={draft.availability}
-            onChange={(event) => update({ availability: event.target.checked })}
+            checked={draft.rare}
+            onChange={(event) => {
+              const rare = event.target.checked;
+              update({ rare });
+              onApply({ rare: rare ? '1' : '' });
+            }}
           />
-          {t('products:filters.availableOnly')}
+          {t('products:filters.rare')}
         </label>
-        <label className="flex items-center gap-3 text-sm text-base-dark">
-          <input
-            type="checkbox"
-            className={checkboxClass}
-            checked={draft.onOffer}
-            onChange={(event) => update({ onOffer: event.target.checked })}
-          />
-          {t('products:filters.onOffer')}
-        </label>
+
       </fieldset>
 
       <div className="mt-1 flex flex-col gap-2 pt-2">

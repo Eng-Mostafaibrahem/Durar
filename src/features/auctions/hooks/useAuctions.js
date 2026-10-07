@@ -7,7 +7,7 @@ import { normalizeAuction, normalizeBid } from '../lib/auction.js';
 /** Auction time-to-live in the cache — kept fresh while the tab is visible. */
 const AUCTION_STALE_MS = 5 * 1000;
 const LIVE_REFRESH_MS = 5 * 1000;
-const LIST_REFRESH_MS = 10 * 1000;
+const LIST_REFRESH_MS = 5 * 1000;
 
 function currentLanguage() {
   return i18n.resolvedLanguage || i18n.language || 'ar';
@@ -42,7 +42,7 @@ export function useAuction(id) {
   });
 }
 
-/** Bid history for an auction, polling every 5s while enabled AND the auction is live. */
+/** Bid history polls at the same cadence as auction prices while the auction is live. */
 export function useAuctionBids(id, { enabled = true, poll = false } = {}) {
   const language = currentLanguage();
   const baseKey = queryKeys.auctions.bids(id);
@@ -56,7 +56,7 @@ export function useAuctionBids(id, { enabled = true, poll = false } = {}) {
     enabled,
     select: (bids) => [...bids].sort((a, b) => b.amount - a.amount),
     staleTime: AUCTION_STALE_MS,
-    refetchInterval: poll ? LIST_REFRESH_MS : false,
+    refetchInterval: poll ? LIVE_REFRESH_MS : false,
   });
 }
 

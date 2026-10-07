@@ -21,7 +21,7 @@ export function AuctionCard({ auction, language = 'ar' }) {
       className="group flex flex-col overflow-hidden rounded-xl border border-border-500/20 bg-white transition-[transform,box-shadow] duration-300 ease-(--ease-luxury) hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/10"
     >
       <div className="relative aspect-[4/3]">
-        <AuctionImage auction={auction} className="h-full w-full rounded-none" />
+        <AuctionImage auction={auction} className="h-[350px] w-full rounded-none" />
         <AuctionStatusBadge status={status} className="absolute end-3 top-3" />
       </div>
 

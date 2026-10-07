@@ -51,4 +51,8 @@ export const endpoints = {
     details: (id) => `/orders/${id}`,
     payment: (id) => `/orders/${id}/payment`,
   },
+  tickets: {
+    list: '/tickets',
+    book: '/tickets/book',
+  },
 };

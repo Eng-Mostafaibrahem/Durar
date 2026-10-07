@@ -1,11 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  HiCheckCircle,
-  HiExclamationTriangle,
-  HiOutlineHome,
-} from 'react-icons/hi2';
+import { HiCheckCircle, HiExclamationTriangle, HiOutlineHome } from 'react-icons/hi2';
 import { Seo } from '../../../components/Seo.jsx';
 import { Container } from '../../../components/Container.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
@@ -48,18 +44,43 @@ export default function AuctionDetailsPage() {
     return auction ? auction.bids.map((bid) => normalizeBid(bid)) : [];
   }, [bidsQuery.data, auction]);
 
+  const auctionWithLatestBids = useMemo(() => {
+    if (!auction) return null;
+
+    const highestBidAmount = bids.reduce(
+      (highest, bid) => Math.max(highest, bid.amount),
+      0,
+    );
+    const currentPrice = Math.max(auction.currentPrice, highestBidAmount);
+    const minimumNextBid = Math.max(
+      auction.minimumNextBid,
+      currentPrice + auction.minBidIncrement,
+    );
+
+    return {
+      ...auction,
+      currentPrice,
+      minimumNextBid,
+      bidsCount: Math.max(auction.bidsCount, bids.length),
+    };
+  }, [auction, bids]);
+
   const images = useMemo(() => {
     if (!auction) return [];
     return auction.gallery.length ? auction.gallery : auction.image ? [auction.image] : [];
   }, [auction]);
 
-  const currentImage = images[Math.min(imageIndex, Math.max(images.length - 1, 0))] ?? auction?.image ?? null;
+  const currentImage =
+    images[Math.min(imageIndex, Math.max(images.length - 1, 0))] ?? auction?.image ?? null;
 
   const status = auction?.status;
   const isLive = status === 'live';
   const isEnded = status === 'ended';
   const isWon = auction?.isWinner === true;
   const isHighestBidder = auction?.isHighestBidder === true;
+  const winningBid = bids[0] ?? null;
+  const winnerName = auction?.winnerName || winningBid?.bidder || '';
+  const winningBidAmount = auction?.winningBidAmount ?? winningBid?.amount ?? null;
 
   const countdownTarget = isLive ? auction?.endsAt : auction?.startsAt;
 
@@ -69,12 +90,18 @@ export default function AuctionDetailsPage() {
 
       <Container className="py-10">
         <nav className="mb-6 flex items-center gap-2 text-sm text-hue-500">
-          <Link to={paths.home} className="inline-flex items-center gap-1.5 transition-colors hover:text-primary-500">
+          <Link
+            to={paths.home}
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-primary-500"
+          >
             <HiOutlineHome aria-hidden="true" className="size-4" />
             {t('nav:home')}
           </Link>
           <span aria-hidden="true">/</span>
-          <Link to={paths.auctions} className="inline-flex items-center gap-1.5 transition-colors hover:text-primary-500">
+          <Link
+            to={paths.auctions}
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-primary-500"
+          >
             {t('auctions:title')}
           </Link>
           <span aria-hidden="true">/</span>
@@ -112,7 +139,11 @@ export default function AuctionDetailsPage() {
                       type="button"
                       onClick={() => setImageIndex(index)}
                       aria-label={t('common:a11y.galleryThumbnails')}
-                      className={index === imageIndex ? '' : 'opacity-70 transition-opacity hover:opacity-100'}
+                      className={
+                        index === imageIndex
+                          ? ''
+                          : 'opacity-70 transition-opacity hover:opacity-100'
+                      }
                     >
                       <img
                         src={image}
@@ -164,10 +195,12 @@ export default function AuctionDetailsPage() {
               <div className="rounded-2xl border border-border-500/15 bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between gap-3">
                   <AuctionStatusBadge status={status} />
-                  {isHighestBidder && isLive && <Badge variant="success">{t('auctions:status.highestBidder')}</Badge>}
+                  {isHighestBidder && isLive && (
+                    <Badge variant="gold">{t('auctions:status.highestBidder')}</Badge>
+                  )}
                 </div>
 
-                {countdownTarget ? (
+                {isEnded ? null : countdownTarget ? (
                   <div className="mt-4 rounded-xl bg-bg-secondary px-4 py-3">
                     <p className="text-xs text-hue-500">
                       {isLive ? t('auctions:endsIn') : t('auctions:startsIn')}
@@ -188,7 +221,7 @@ export default function AuctionDetailsPage() {
 
                 <div className="mt-6 flex items-baseline gap-2">
                   <span className="font-sans text-4xl font-bold text-primary-700">
-                    {formatCurrency(auction.currentPrice, { language })}
+                    {formatCurrency(auctionWithLatestBids.currentPrice, { language })}
                   </span>
                   <img src={curencyLogo} alt="" className="size-6" />
                   <span className="text-sm text-hue-500">{t('auctions:currentBid')}</span>
@@ -204,14 +237,48 @@ export default function AuctionDetailsPage() {
                   <div>
                     <p className="text-xs text-hue-500">{t('auctions:nextBid')}</p>
                     <p className="mt-1 font-sans font-bold text-base-dark">
-                      {formatCurrency(auction.minimumNextBid, { language })}
+                      {formatCurrency(auctionWithLatestBids.minimumNextBid, { language })}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs text-hue-500">{t('auctions:bidsLabel')}</p>
-                    <p className="mt-1 font-sans font-bold text-base-dark">{auction.bidsCount}</p>
+                    <p className="mt-1 font-sans font-bold text-base-dark">
+                      {auctionWithLatestBids.bidsCount}
+                    </p>
                   </div>
                 </div>
+
+                {isEnded && (
+                  <div className="mt-5 rounded-xl border bg-warning-100 text-warning-500 ring-1 ring-warning-500/25 px-4 py-3">
+                    {auction.reserveMet === false ? (
+                      <p className="text-sm font-semibold text-hue-500">
+                        {t('auctions:status.reserveNotMet')}
+                      </p>
+                    ) : winnerName ? (
+                      <>
+                        <p className="text-xs text-hue-500">{t('auctions:winner')}</p>
+                        <p
+                          className="mt-1 break-words text-sm font-semibold text-base-dark"
+                          dir="auto"
+                        >
+                          {winnerName}
+                        </p>
+                        {winningBidAmount !== null && (
+                          <p className="mt-2 text-xs text-hue-500">
+                            {t('auctions:winningBid')}:{' '}
+                            <span className="font-sans font-bold text-primary-700">
+                              {formatCurrency(winningBidAmount, { language })}
+                            </span>
+                          </p>
+                        )}
+                      </>
+                    ) : bidsQuery.isPending ? (
+                      <p className="text-sm text-hue-500">{t('auctions:winnerLoading')}</p>
+                    ) : (
+                      <p className="text-sm text-hue-500">{t('auctions:noWinner')}</p>
+                    )}
+                  </div>
+                )}
 
                 <div className="mt-6">
                   <div className="mb-3 flex items-center justify-between text-xs text-hue-500">
@@ -245,7 +312,7 @@ export default function AuctionDetailsPage() {
 
                   {isLive ? (
                     auction.isBiddable ? (
-                      <BidForm auction={auction} language={language} />
+                      <BidForm auction={auctionWithLatestBids} language={language} />
                     ) : (
                       <p className="rounded-xl border border-dashed border-border-300 bg-hue-100/40 px-4 py-3 text-center text-sm text-hue-500">
                         {t('auctions:biddingPaused')}
@@ -260,7 +327,7 @@ export default function AuctionDetailsPage() {
               </div>
 
               <div className="mt-8 rounded-2xl border border-border-500/15 bg-white p-6">
-                <BidHistoryTitle count={auction.bidsCount} />
+                <BidHistoryTitle count={auctionWithLatestBids.bidsCount} />
                 <div className="mt-4">
                   <BidHistory bids={bids} isLoading={bidsQuery.isPending} language={language} />
                 </div>
@@ -271,7 +338,11 @@ export default function AuctionDetailsPage() {
       </Container>
 
       {auction?.isWinner && (
-        <WonAuctionCheckout auction={auction} open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
+        <WonAuctionCheckout
+          auction={auction}
+          open={checkoutOpen}
+          onClose={() => setCheckoutOpen(false)}
+        />
       )}
     </>
   );

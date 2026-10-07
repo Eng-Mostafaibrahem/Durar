@@ -7,6 +7,7 @@
     "minPrice": "من",
     "maxPrice": "إلى",
     "type": "النوع",
+    "rare": "قطع نادرة",
     "availability": "التوفّر",
     "availableOnly": "المتوفّر فقط",
     "onOffer": "عليها عرض",
@@ -23,8 +24,8 @@
   },
   "sort": {
     "newest": "الأحدث",
-    "priceAsc": "السعر: من الأقل للأعلى",
-    "priceDesc": "السعر: من الأعلى للأقل",
+    "price_asc": "السعر: من الأقل للأعلى",
+    "price_desc": "السعر: من الأعلى للأقل",
     "popular": "الأكثر رواجاً"
   },
   "specs": {

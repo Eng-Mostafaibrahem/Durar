@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { Navigate, useLocation, useSearchParams, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -17,12 +17,21 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function LoginPage() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const { login } = useAuth();
   const [submitError, setSubmitError] = useState(null);
+  const [redirectTo, setRedirectTo] = useState(null);
 
-  const returnTo = useMemo(() => safeReturnTo(searchParams.get('returnTo')), [searchParams]);
+  const returnTo = useMemo(() => {
+    const from = location.state?.from;
+    const stateReturnTo =
+      from && typeof from.pathname === 'string'
+        ? `${from.pathname}${from.search ?? ''}${from.hash ?? ''}`
+        : null;
+
+    return safeReturnTo(searchParams.get('returnTo') || stateReturnTo);
+  }, [location.state, searchParams]);
   const registerTarget = `${paths.register}?returnTo=${encodeURIComponent(returnTo)}`;
 
   const {
@@ -34,17 +43,23 @@ export default function LoginPage() {
 
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: () => navigate(returnTo, { replace: true }),
     onError: (error) => {
       setSubmitError(messageFor(error, t, 'auth:login.error'));
       applyFieldErrors(error, setError, { email: 'email', password: 'password' });
     },
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     setSubmitError(null);
-    mutation.mutate(values);
+    try {
+      await mutation.mutateAsync(values);
+      setRedirectTo(returnTo);
+    } catch {
+      // The mutation handler displays the API error and field validation.
+    }
   };
+
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
 
   return (
     <>

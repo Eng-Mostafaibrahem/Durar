@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { Navigate, useLocation, useSearchParams, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -18,15 +18,21 @@ const PHONE_PATTERN = /^\+?[0-9][0-9\s-]{7,14}$/;
 
 export default function RegisterPage() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const { register: registerAccount } = useAuth();
   const [submitError, setSubmitError] = useState(null);
+  const [redirectTo, setRedirectTo] = useState(null);
 
-  const returnTo = useMemo(
-    () => safeReturnTo(searchParams.get('returnTo'), paths.home),
-    [searchParams],
-  );
+  const returnTo = useMemo(() => {
+    const from = location.state?.from;
+    const stateReturnTo =
+      from && typeof from.pathname === 'string'
+        ? `${from.pathname}${from.search ?? ''}${from.hash ?? ''}`
+        : null;
+
+    return safeReturnTo(searchParams.get('returnTo') || stateReturnTo);
+  }, [location.state, searchParams]);
   const loginTarget = `${paths.login}?returnTo=${encodeURIComponent(returnTo)}`;
 
   const {
@@ -41,7 +47,6 @@ export default function RegisterPage() {
 
   const mutation = useMutation({
     mutationFn: registerAccount,
-    onSuccess: () => navigate(returnTo, { replace: true }),
     onError: (error) => {
       setSubmitError(messageFor(error, t, 'auth:register.error'));
       applyFieldErrors(error, setError, {
@@ -54,10 +59,17 @@ export default function RegisterPage() {
     },
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     setSubmitError(null);
-    mutation.mutate(values);
+    try {
+      await mutation.mutateAsync(values);
+      setRedirectTo(returnTo);
+    } catch {
+      // The mutation handler displays the API error and field validation.
+    }
   };
+
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
 
   return (
     <>

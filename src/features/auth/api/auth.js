@@ -39,5 +39,18 @@ export async function updateProfileRequest({ name, phone, avatar }) {
 }
 
 export function extractToken(authResult) {
-  return authResult?.token ?? null;
+  const payload = authResult?.data ?? authResult;
+  const token =
+    payload?.token ??
+    payload?.access_token ??
+    payload?.accessToken ??
+    payload?.plainTextToken ??
+    payload?.plain_text_token;
+
+  return typeof token === 'string' && token.trim() ? token : null;
+}
+
+export function extractUser(authResult) {
+  const payload = authResult?.data ?? authResult;
+  return payload?.user ?? null;
 }

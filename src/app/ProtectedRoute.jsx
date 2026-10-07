@@ -20,7 +20,13 @@ export function ProtectedRoute({ children, redirectTo = '/login' }) {
 
   if (!isAuthenticated) {
     const returnTo = `${location.pathname}${location.search}`;
-    return <Navigate to={`${redirectTo}?returnTo=${encodeURIComponent(returnTo)}`} replace />;
+    return (
+      <Navigate
+        to={`${redirectTo}?returnTo=${encodeURIComponent(returnTo)}`}
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
   return children;

@@ -8,16 +8,13 @@ import { EmptyState } from '../../../components/ui/EmptyState.jsx';
 import { paths } from '../../../lib/paths.js';
 import { ProductGrid } from '../../products/components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../../products/components/ProductListSkeleton.jsx';
-import { OfferBanner } from '../components/OfferBanner.jsx';
-import { useOfferBanners, useOffersProducts } from '../hooks/useOffers.js';
+import { useOffersProducts } from '../hooks/useOffers.js';
 import banner from '../../../assets/shop-banner.webp';
 
 export default function OffersPage() {
   const { t } = useTranslation();
-  const banners = useOfferBanners();
   const offers = useOffersProducts();
 
-  const offerBanners = banners.data?.items ?? [];
   const list = offers.data?.items ?? [];
 
   return (

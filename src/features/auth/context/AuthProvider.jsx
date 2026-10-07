@@ -4,6 +4,7 @@ import { tokenStore } from '../../../lib/tokenStore.js';
 import { queryKeys } from '../../../lib/queryKeys.js';
 import { AuthContext } from './authContext.js';
 import {
+  extractUser,
   extractToken,
   fetchMe,
   loginRequest,
@@ -30,18 +31,16 @@ export function AuthProvider({ children }) {
     async (request) => {
       const result = await request();
       const token = extractToken(result);
-      tokenStore.set(token);
+      let user = extractUser(result);
 
-      let user = result?.user ?? null;
       if (user) {
         queryClient.setQueryData(queryKeys.me, user);
-      } else {
-        user = await queryClient.fetchQuery({
-            queryKey: queryKeys.me,
-            queryFn: fetchMe,
-            staleTime: 5 * 60 * 1000,
-          });
+      } else if (!token) {
+        user = await fetchMe();
+        queryClient.setQueryData(queryKeys.me, user);
       }
+
+      if (token) tokenStore.set(token);
       void queryClient.invalidateQueries({ queryKey: queryKeys.cart.all });
 
       return user;
@@ -73,7 +72,7 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       user: user ?? null,
-      isAuthenticated: Boolean(user),
+      isAuthenticated: hasToken || Boolean(user),
       isReady: !hasToken || !isPending,
       login,
       register,

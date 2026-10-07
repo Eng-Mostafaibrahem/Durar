@@ -7,6 +7,8 @@ import { LanguageSwitcher } from '../../components/LanguageSwitcher.jsx';
 import { paths } from '../../lib/paths.js';
 import { NAV_ITEMS, navLinkClass } from '../lib/navItem.js';
 
+import logo from '../../assets/logo (2).webp';
+
 export function MobileMenu({
   open,
   onClose,
@@ -17,7 +19,21 @@ export function MobileMenu({
   const { t } = useTranslation();
 
   return (
-    <Drawer open={open} onClose={onClose} side="start" title={t('common:appName')} className="xl:hidden">
+    <Drawer
+      open={open}
+      onClose={onClose}
+      side="start"
+      title={
+        <Link to={paths.home} onClick={onClose} className="flex shrink-0 items-center">
+          <img
+            src={logo}
+            alt={t('common:appName')}
+            className="h-12 w-auto max-w-[7rem] shrink-0 object-contain"
+          />
+        </Link>
+      }
+      className="xl:hidden"
+    >
       <nav aria-label={t('nav:home')}>
         <ul className="flex flex-col gap-1">
           {NAV_ITEMS.map((item) => (

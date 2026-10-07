@@ -36,13 +36,22 @@ export function Navbar() {
   const searchInputRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const searchFromUrl = new URLSearchParams(location.search).get('nav_q') ?? '';
+  const searchParams = new URLSearchParams(location.search);
+  const searchFromUrl = searchParams.get('nav_q') ?? searchParams.get('q') ?? '';
+  const [searchQuery, setSearchQuery] = useState(searchFromUrl);
   useOnEscape(isMenuOpen, () => setIsMenuOpen(false));
   useOnEscape(isSearchOpen, () => setIsSearchOpen(false));
 
   useEffect(() => {
     if (isSearchOpen) searchInputRef.current?.focus();
   }, [isSearchOpen]);
+
+  // Sync the input when the URL query changes (back/forward, external nav).
+  const [lastSearchFromUrl, setLastSearchFromUrl] = useState(searchFromUrl);
+  if (searchFromUrl !== lastSearchFromUrl) {
+    setLastSearchFromUrl(searchFromUrl);
+    setSearchQuery(searchFromUrl);
+  }
 
   // لو الشاشة كبرت والمنيو مفتوحة، نقفله عشان الـ scroll lock ما يفضلش شغال
   useEffect(() => {
@@ -60,9 +69,8 @@ export function Navbar() {
 
   const submitSearch = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
     const next = new URLSearchParams(location.pathname === paths.shop ? location.search : '');
-    const query = String(formData.get('q') ?? '').trim();
+    const query = searchQuery.trim();
     next.delete('q');
     if (query) next.set('nav_q', query);
     else next.delete('nav_q');
@@ -72,6 +80,20 @@ export function Navbar() {
       pathname: paths.shop,
       search: next.toString() ? `?${next.toString()}` : '',
     });
+    setIsSearchOpen(false);
+  };
+
+  const clearSearch = () => {
+    const next = new URLSearchParams(location.pathname === paths.shop ? location.search : '');
+    next.delete('q');
+    next.delete('nav_q');
+    next.delete('page');
+
+    navigate({
+      pathname: paths.shop,
+      search: next.toString() ? `?${next.toString()}` : '',
+    });
+    setSearchQuery('');
     setIsSearchOpen(false);
   };
 
@@ -135,11 +157,17 @@ export function Navbar() {
                     ref={searchInputRef}
                     type="search"
                     name="q"
-                    defaultValue={searchFromUrl}
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
                     placeholder={t('nav:searchPlaceholder')}
                     aria-label={t('nav:searchPlaceholder')}
                     className="h-11 min-w-0 flex-1 rounded-lg border border-border-100 bg-white px-3 text-sm text-base-dark outline-none transition-colors placeholder:text-hue-500 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15"
                   />
+                  {searchQuery && (
+                    <Button type="button" variant="subtle" size="sm" onClick={clearSearch}>
+                      {t('common:actions.clear')}
+                    </Button>
+                  )}
                   <Button type="submit" size="sm">
                     {t('common:actions.search')}
                   </Button>
@@ -175,6 +203,7 @@ export function Navbar() {
             {/* أيقونة الحساب: تابلت ولابتوب صغير. الزرار الكامل من xl */}
             <Link
               to={accountTarget}
+              state={{ from: location }}
               aria-label={accountLabel}
               className="hidden size-10 place-items-center rounded-full text-hue-500 transition-colors hover:bg-hue-100 sm:grid xl:hidden"
             >
@@ -183,7 +212,12 @@ export function Navbar() {
 
             <LanguageSwitcher compact className="ms-1 hidden sm:inline-flex" />
 
-            <Button to={accountTarget} size="sm" className="ms-1 hidden xl:inline-flex">
+            <Button
+              to={accountTarget}
+              state={{ from: location }}
+              size="sm"
+              className="ms-1 hidden xl:inline-flex"
+            >
               {accountLabel}
             </Button>
           </div>

@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { HiChevronLeft, HiExclamationTriangle, HiOutlineCubeTransparent } from 'react-icons/hi2';
@@ -13,7 +12,6 @@ import { AuctionPanel } from '../components/AuctionPanel.jsx';
 import { ProductReviews } from '../components/ProductReviews.jsx';
 import { RelatedProducts } from '../components/RelatedProducts.jsx';
 import { paths } from '../../../lib/paths.js';
-import { resolveImageList } from '../../../utils/media.js';
 
 const TYPE_KEYS = ['stone', 'meteorite', 'jewelry'];
 
@@ -118,7 +116,7 @@ console.log(product);
           <ProductGallery
             images={product.gallery}
             name={product.name_ar ?? product.name}
-            backgroundVariant={"card3" ?? product.silk_variant}
+            backgroundVariant="card3"
           />
 
           <div className="min-w-0">

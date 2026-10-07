@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -20,14 +20,19 @@ import { useCategories } from '../../categories/hooks/useCategories.js';
 import { ProductFilters } from '../components/ProductFilters.jsx';
 import { ProductGrid } from '../components/ProductGrid.jsx';
 import { ProductListSkeleton } from '../components/ProductListSkeleton.jsx';
-import { filterAndSortProducts } from '../lib/filterProducts.js';
 import { cn } from '../../../utils/cn.js';
 import { PageHero } from '../../../components/PageHero.jsx';
 import banner from '../../../assets/shop-banner.webp';
 
-const SORT_OPTIONS = ['newest', 'priceAsc', 'priceDesc', 'popular'];
+const SORT_OPTIONS = ['newest', 'price_asc', 'price_desc', 'popular'];
 
 function readFilters(searchParams) {
+  const requestedSort = searchParams.get('sort') ?? 'newest';
+  const sort = {
+    priceAsc: 'price_asc',
+    priceDesc: 'price_desc',
+  }[requestedSort] ?? requestedSort;
+
   return {
     q: searchParams.get('q') ?? '',
     navQ: searchParams.get('nav_q') ?? '',
@@ -37,7 +42,8 @@ function readFilters(searchParams) {
     price_max: searchParams.get('price_max') ?? '',
     availability: searchParams.get('availability') ?? '',
     onOffer: searchParams.get('onOffer') ?? '',
-    sort: searchParams.get('sort') ?? 'newest',
+    rare: searchParams.get('rare') ?? '',
+    sort,
     page: Math.max(1, Number(searchParams.get('page')) || 1),
   };
 }
@@ -64,33 +70,34 @@ export default function ShopPage() {
   const productsQuery = useProducts(filters);
   const categories = useCategories();
 
-  const rawProducts = useMemo(
-    () => productsQuery.data?.items ?? [],
-    [productsQuery.data],
-  );
-
-  const products = useMemo(
-    () => filterAndSortProducts(rawProducts, filters),
-    [rawProducts, filters],
-  );
+  const products = productsQuery.data?.items ?? [];
+  const lastPage = productsQuery.data?.meta?.lastPage;
 
   const serverCount =
     typeof productsQuery.data?.meta?.total === 'number'
       ? productsQuery.data.meta.total
       : products.length;
 
-  const hasClientFilters = Boolean(
-    filters.type || filters.price_min || filters.price_max || filters.availability || filters.onOffer,
-  );
-  const filteredCount = hasClientFilters ? products.length : serverCount;
+  useEffect(() => {
+    if (!lastPage || filters.page <= lastPage) return;
 
-  const hasActiveFilters = Object.entries(filters).some(
-    ([key, value]) => key !== 'sort' && key !== 'page' && value !== '',
-  );
+    const next = new URLSearchParams(searchParams);
+    if (lastPage === 1) next.delete('page');
+    else next.set('page', String(lastPage));
+    setSearchParams(next, { replace: true });
+  }, [filters.page, lastPage, searchParams, setSearchParams]);
+
+  const hasActiveFilters =
+    filters.sort !== 'newest' ||
+    Object.entries(filters).some(
+      ([key, value]) => key !== 'sort' && key !== 'page' && value !== '',
+    );
 
   const apply = (patch) => commitFilters(searchParams, setSearchParams, patch);
 
   const changePage = (page) => {
+    if (page < 1 || (lastPage && page > lastPage) || page === filters.page) return;
+
     const next = new URLSearchParams(searchParams);
     if (page <= 1) next.delete('page');
     else next.set('page', String(page));
@@ -182,7 +189,7 @@ export default function ShopPage() {
                     productsQuery.isPending && 'h-4 w-24 animate-pulse rounded-full bg-hue-100',
                   )}
                 >
-                  {!productsQuery.isPending && t('products:resultsCount', { count: filteredCount })}
+                  {!productsQuery.isPending && t('products:resultsCount', { count: serverCount })}
                 </p>
               </div>
 
@@ -190,9 +197,12 @@ export default function ShopPage() {
                 <span className="text-sm text-hue-500">{t('products:sortLabel')}</span>
                 <Select
                   value={filters.sort}
-                  onChange={(event) =>
-                    commitFilters(searchParams, setSearchParams, { sort: event.target.value })
-                  }
+                  onChange={(event) => {
+                    const sort = event.target.value;
+                    commitFilters(searchParams, setSearchParams, {
+                      sort: sort === 'newest' ? '' : sort,
+                    });
+                  }}
                   options={sortOptions}
                   className="h-11 w-44 text-sm"
                   aria-label={t('products:sortLabel')}
@@ -231,8 +241,8 @@ export default function ShopPage() {
                 <>
                   <ProductGrid products={products} />
                   <Pagination
-                    page={productsQuery.data.meta.page}
-                    lastPage={productsQuery.data.meta.lastPage}
+                    page={filters.page}
+                    lastPage={lastPage}
                     onPageChange={changePage}
                     className="mt-10"
                   />

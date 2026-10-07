@@ -9,6 +9,7 @@
     "type": "Type",
     "availability": "Availability",
     "availableOnly": "In stock only",
+    "rare": "Rare items",
     "onOffer": "On offer",
     "search": "Search the shop",
     "all": "All",
@@ -23,8 +24,8 @@
   },
   "sort": {
     "newest": "Newest",
-    "priceAsc": "Price: low to high",
-    "priceDesc": "Price: high to low",
+    "price_asc": "Price: low to high",
+    "price_desc": "Price: high to low",
     "popular": "Most popular"
   },
   "specs": {

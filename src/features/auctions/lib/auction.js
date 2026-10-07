@@ -47,6 +47,30 @@ export function normalizeAuction(auction, language = 'ar') {
   const text = localized(auction, ['name', 'description'], language);
   const currentPrice = Number(auction.current_price) || 0;
   const minBidIncrement = Number(auction.min_bid_increment) || 0;
+  const winner =
+    auction.winner ??
+    auction.winner_user ??
+    auction.winnerUser ??
+    auction.highest_bidder ??
+    auction.winning_bid?.user ??
+    auction.highest_bid?.user ??
+    null;
+  const winnerName =
+    auction.winner_name ??
+    auction.winnerName ??
+    auction.highest_bidder_name ??
+    (typeof winner === 'string' ? winner : null) ??
+    winner?.name ??
+    winner?.user_name ??
+    winner?.user?.name ??
+    null;
+  const winningBidAmount =
+    Number(
+      auction.winning_bid?.amount ??
+        auction.highest_bid?.amount ??
+        auction.winning_bid_amount ??
+        auction.winningBidAmount,
+    ) || null;
 
   return {
     id: auction.id,
@@ -79,26 +103,26 @@ export function normalizeAuction(auction, language = 'ar') {
     isWinner: auction.is_winner ?? auction.is_won ?? null,
     isHighestBidder: auction.is_highest_bidder ?? null,
     reserveMet: auction.reserve_met ?? null,
+    winnerName: typeof winnerName === 'string' ? winnerName.trim() : null,
+    winningBidAmount,
   };
-}
-
-/** Masks a bidder identity for display, e.g. "أ•••". */
-export function maskName(name) {
-  const value = String(name ?? '').trim();
-  if (!value) return '•••';
-  if (value.length <= 1) return `${value}•`;
-  return `${value.charAt(0)}•••`;
 }
 
 /** Normalizes an unknown bid-history entry so rendering is defensive. */
 export function normalizeBid(bid) {
   const amount = Number(bid?.amount ?? bid?.price ?? bid?.bid_amount ?? 0) || 0;
-  const rawName = bid?.user?.name ?? bid?.user_name ?? bid?.name;
+  const rawName =
+    bid?.user?.name ??
+    bid?.bidder?.name ??
+    bid?.bidder_name ??
+    bid?.user_name ??
+    bid?.bidder ??
+    bid?.name;
 
   return {
     id: bid?.id,
     amount,
-    bidder: maskName(rawName),
+    bidder: typeof rawName === 'string' ? rawName.trim() : '',
     createdAt: bid?.created_at ?? bid?.createdAt ?? null,
     isCurrentUser: Boolean(bid?.is_current_user ?? bid?.is_me ?? false),
     source: bid,

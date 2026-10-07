@@ -37,6 +37,11 @@
   "bidError": "Could not place your bid, try again",
   "bidHistory": "Bid history",
   "noBidsYet": "No bids yet — be the first to bid!",
+  "winner": "Auction winner",
+  "winnerLoading": "Loading winner details…",
+  "winningBid": "Winning bid",
+  "noWinner": "No winner has been recorded for this auction.",
+  "unknownBidder": "Unknown bidder",
   "loginRequired": "Only registered members can place bids.",
   "loginToBid": "Log in to place a bid",
   "schedule": {

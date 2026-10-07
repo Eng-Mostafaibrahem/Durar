@@ -2,16 +2,20 @@
  * Normalizes the backend's paginated payload into { items, meta } so feature
  * api functions never leak Laravel field names into components.
  *
- * Backend shape (post unwrap): { data: [...], current_page, per_page, total, last_page }
+ * Supports Laravel's nested paginator ({ data: [...], meta: {...}, links: {...} })
+ * and the flat paginator shape used by some endpoints.
  */
 export function normalizePage(payload) {
   const source = Array.isArray(payload) ? { data: payload } : (payload ?? {});
   const items = Array.isArray(source.data) ? source.data : [];
-  const page = Number(source.current_page) || 1;
-  const perPage = Number(source.per_page) || items.length || null;
-  const total = Number(source.total) || items.length;
+  const pagination = source.meta ?? source;
+  const page = Number(pagination.current_page ?? source.current_page) || 1;
+  const perPage = Number(pagination.per_page ?? source.per_page) || items.length || null;
+  const totalValue = pagination.total ?? source.total;
+  const total = totalValue == null ? items.length : Number(totalValue);
   const lastPage =
-    Number(source.last_page) || (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1);
+    Number(pagination.last_page ?? source.last_page) ||
+    (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1);
 
   return {
     items,

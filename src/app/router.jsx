@@ -36,6 +36,8 @@ const MyBidsPage = lazy(() => import('../features/account/pages/MyBidsPage.jsx')
 const AboutPage = lazy(() => import('../features/pages/AboutPage.jsx'));
 const ContactPage = lazy(() => import('../features/pages/ContactPage.jsx'));
 const FaqPage = lazy(() => import('../features/pages/FaqPage.jsx'));
+const TicketsPage = lazy(() => import('../features/tickets/pages/TicketsPage.jsx'));
+const MuseumPage = lazy(() => import('../features/museum/pages/MuseumPage.jsx'));
 const NotFoundPage = lazy(() => import('../features/pages/NotFoundPage.jsx'));
 
 function RouteFallback() {
@@ -101,6 +103,9 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
           <Route element={<MainLayout />}>
             <Route index element={<HomePage />} />
 
+            <Route path="store" element={<ShopPage />} />
+            <Route path="store/:id" element={<ProductDetailsPage />} />
+            {/* Legacy aliases; all links now use /store */}
             <Route path="shop" element={<ShopPage />} />
             <Route path="shop/:id" element={<ProductDetailsPage />} />
             <Route path="collections" element={<CategoriesPage />} />
@@ -125,6 +130,9 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="faq" element={<FaqPage />} />
+            <Route path="museum" element={<MuseumPage />} />
+            <Route path="tickets" element={<TicketsPage />} />
+            {/* <Route path="tickets" element={<TicketsPage />} /> */}
 
             <Route
               path="account"

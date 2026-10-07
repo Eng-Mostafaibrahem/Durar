@@ -12,6 +12,8 @@ import favorites from './favorites.json';
 import pages from './pages.json';
 import validation from './validation.json';
 import errors from './errors.json';
+import tickets from './tickets.json';
+import museum from './museum.json';
 
 export default {
   common,
@@ -28,4 +30,6 @@ export default {
   pages,
   validation,
   errors,
+  tickets,
+  museum,
 };

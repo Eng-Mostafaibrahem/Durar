@@ -39,7 +39,7 @@ export function BidHistory({ bids = [], isLoading = false, language = 'ar' }) {
 
   return (
     <ol className="max-h-80 space-y-2 overflow-y-auto pe-1">
-      {bids.map((bid) => (
+      {bids.map((bid,i) => (
         <li
           key={bid.id ?? `${bid.createdAt}-${bid.amount}`}
           className="flex items-center justify-between gap-3 rounded-xl border border-border-100 bg-white px-4 py-3"
@@ -49,11 +49,11 @@ export function BidHistory({ bids = [], isLoading = false, language = 'ar' }) {
               className="grid size-9 shrink-0 place-items-center rounded-full bg-hue-100 text-xs font-bold text-hue-500"
               dir="auto"
             >
-              {bid.bidder}
+              {i+1 || t('auctions:unknownBidder')}
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-medium text-base-dark" dir="auto">
-                {bid.bidder}
+                {bid.bidder || t('auctions:unknownBidder')}
               </p>
               <p className="text-xs text-hue-500">
                 {bid.createdAt ? formatBidTime(bid.createdAt, language) : ''}

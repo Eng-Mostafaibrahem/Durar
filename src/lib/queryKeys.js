@@ -48,4 +48,8 @@ export const queryKeys = {
     home: () => ['content', 'home'],
     faq: () => ['content', 'faq'],
   },
+  tickets: {
+    all: ['tickets'],
+    list: () => ['tickets', 'list'],
+  },
 };

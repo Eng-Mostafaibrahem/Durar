@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { Seo } from '../../../components/Seo.jsx';
 import { Hero } from '../components/Hero.jsx';
 import { FeaturedPicks } from '../components/FeaturedPicks.jsx';
-import { OffersShowcase } from '../components/OffersShowcase.jsx';
 import { CollectionsShowcase } from '../components/CollectionsShowcase.jsx';
 import { EditorialBlock } from '../components/EditorialBlock.jsx';
 import { SelectedPieces } from '../components/SelectedPieces.jsx';

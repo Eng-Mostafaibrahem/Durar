@@ -28,7 +28,9 @@ export default function CollectionPage() {
     if (nextPage <= 1) next.delete('page');
     else next.set('page', String(nextPage));
     setSearchParams(next);
-    document.getElementById('collection-products')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document
+      .getElementById('collection-products')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   if (category.isPending || products.isPending) {
@@ -64,7 +66,7 @@ export default function CollectionPage() {
       />
 
       <PageHero
-              image={banner}
+        image={banner}
 
         title={activeCategory.name}
         subtitle={activeCategory.description ?? ''}
@@ -86,7 +88,7 @@ export default function CollectionPage() {
                 </Button>
               }
             />
-          ) : products.data?.pages[0]?.items.length === 0 ? (
+          ) : products.data?.items.length === 0 ? (
             <EmptyState
               icon={HiOutlineSwatch}
               title={t('products:empty.title')}
@@ -94,7 +96,7 @@ export default function CollectionPage() {
             />
           ) : (
             <>
-              <ProductGrid products={products.data.items} />
+              <ProductGrid products={products?.data?.items} />
               <Pagination
                 page={products.data.meta.page}
                 lastPage={products.data.meta.lastPage}

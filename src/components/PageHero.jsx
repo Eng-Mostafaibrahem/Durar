@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
@@ -56,10 +56,13 @@ export  function PageHero({
   const placeholder =
     searchPlaceholder ?? content.placeholder?.[lang] ?? DEFAULT_CONTENT.placeholder[lang];
   const submitLabel = searchButtonLabel ?? content.button?.[lang] ?? DEFAULT_CONTENT.button[lang];
+  const [lastSearchValue, setLastSearchValue] = useState(searchValue);
 
-  useEffect(() => {
+  // Sync the input when the parent's controlled value changes (e.g. back/forward).
+  if (searchValue !== lastSearchValue) {
+    setLastSearchValue(searchValue);
     if (searchValue !== undefined) setQuery(searchValue);
-  }, [searchValue]);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

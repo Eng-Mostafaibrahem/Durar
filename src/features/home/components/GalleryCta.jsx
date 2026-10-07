@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../../utils/cn.js';
 import bannerImage from '../../../assets/museum3.webp';
+import { paths } from '../../../lib/paths.js';
 
 const CONTENT = {
   title: { ar: 'اكتشف القصة على أرض الواقع', en: 'Discover the story in person' },
@@ -13,7 +14,7 @@ const CONTENT = {
   cta: { ar: 'خطط لزيارتك', en: 'Plan your visit' },
 };
 
-export function VisitBanner({ to = '/museum', className }) {
+export function VisitBanner({ to = paths.museum, className }) {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
 

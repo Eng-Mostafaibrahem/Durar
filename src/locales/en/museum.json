@@ -1,0 +1,25 @@
+{
+  "pageTitle": "Durar Museum of Gems & Meteorites",
+  "pageDescription": "Discover Durar Museum up close: a rare collection of gemstones and meteorites. Book your visit ticket.",
+  "hero": {
+    "eyebrow": "Durar Museum",
+    "title": "Where the treasures of the Earth meet the stories of the stars",
+    "subtitle": "A permanent display of rare gemstones and meteorites that crossed space, along with curated pieces you can own from our museum.",
+    "primaryCta": "Shop the collection",
+    "secondaryCta": "Book your visit"
+  },
+  "products": {
+    "title": "Selected pieces from the museum",
+    "subtitle": "Rare gemstones, meteorites and jewelry you can own.",
+    "viewAll": "Browse the store",
+    "empty": "No products right now",
+    "emptyHint": "Check back soon for new museum pieces."
+  },
+  "banner": {
+    "eyebrow": "Visit the museum",
+    "title": "Book your museum visit ticket",
+    "description": "A unique experience among rare gemstones and meteorites, with guidance and the story behind every piece.",
+    "from": "Tickets start from {{price}}",
+    "cta": "Book your ticket now"
+  }
+}

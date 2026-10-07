@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineInformationCircle } from 'react-icons/hi2';
@@ -20,11 +21,20 @@ export function BidForm({ auction, language = 'ar', disabled = false }) {
   const {
     register,
     handleSubmit,
+    getValues,
+    reset,
     setError,
     formState: { errors },
   } = useForm({
     defaultValues: { amount: minBid || '' },
   });
+
+  useEffect(() => {
+    const currentAmount = Number(getValues('amount'));
+    if (!Number.isFinite(currentAmount) || currentAmount < minBid) {
+      reset({ amount: minBid || '' });
+    }
+  }, [getValues, minBid, reset]);
 
   const returnTo = `${paths.login}?returnTo=${encodeURIComponent(paths.auctionDetails(auction.id))}`;
 

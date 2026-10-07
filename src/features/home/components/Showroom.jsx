@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../../utils/cn.js';
 import museumImage from '../../../assets/museum.webp';
 import { Container } from '../../../components/Container.jsx';
+import { paths } from '../../../lib/paths.js';
 
 const CONTENT = {
   eyebrow: { ar: 'متحف الأحجار الكريمة والنيازك', en: 'Museum of Gems & Meteorites' },
@@ -29,7 +30,7 @@ const CONTENT = {
   cta: { ar: 'زيارة المتحف', en: 'Visit the museum' },
 };
 
-export function MuseumSection({ to = '/museum', className }) {
+export function MuseumSection({ to = paths.museum, className }) {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
 

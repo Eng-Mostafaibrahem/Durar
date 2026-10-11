@@ -122,7 +122,10 @@ export function Navbar() {
             </span> */}
           </Link>
 
-          <nav aria-label={t('nav:home')} className="hidden flex-1 items-center justify-center xl:flex">
+          <nav
+            aria-label={t('nav:home')}
+            className="hidden flex-1 items-center justify-center xl:flex"
+          >
             <ul className="flex items-center gap-0.5">
               {NAV_ITEMS.map((item) => (
                 <li key={item.labelKey}>
@@ -161,7 +164,7 @@ export function Navbar() {
                     onChange={(event) => setSearchQuery(event.target.value)}
                     placeholder={t('nav:searchPlaceholder')}
                     aria-label={t('nav:searchPlaceholder')}
-                    className="h-11 min-w-0 flex-1 rounded-lg border border-border-100 bg-white px-3 text-sm text-base-dark outline-none transition-colors placeholder:text-hue-500 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15"
+                    className="h-11 min-w-0 flex-1 rounded-lg border border-border-100 bg-white px-3 text-base text-base-dark outline-none transition-colors placeholder:text-hue-500 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15"
                   />
                   {searchQuery && (
                     <Button type="button" variant="subtle" size="sm" onClick={clearSearch}>

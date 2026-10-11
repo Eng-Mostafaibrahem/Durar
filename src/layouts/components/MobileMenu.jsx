@@ -9,13 +9,7 @@ import { NAV_ITEMS, navLinkClass } from '../lib/navItem.js';
 
 import logo from '../../assets/logo (2).webp';
 
-export function MobileMenu({
-  open,
-  onClose,
-  accountTarget,
-  accountLabel,
-  favoritesCount,
-}) {
+export function MobileMenu({ open, onClose, accountTarget, accountLabel, favoritesCount }) {
   const { t } = useTranslation();
 
   return (
@@ -56,7 +50,7 @@ export function MobileMenu({
         <Link
           to={paths.favorites}
           onClick={onClose}
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-base-dark transition-colors hover:bg-hue-100 sm:hidden"
+          className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-base-dark transition-colors hover:bg-hue-100 sm:hidden"
         >
           <HiHeart aria-hidden="true" className="size-5 text-hue-500" />
           <span>{t('nav:favorites')}</span>

@@ -18,22 +18,21 @@ export function Hero() {
     <section className="relative isolate overflow-hidden bg-bg-main md:h-[clamp(22rem,46vw,46rem)]">
       <div className="mx-auto flex max-w-screen-2xl flex-col items-start px-5 pb-12 pt-12 sm:px-8 md:h-full md:flex-row md:items-center md:px-[5%] md:pb-0 md:pt-0">
         {/* النص */}
-        <div className="flex w-full max-w-[80%] flex-col text-start md:max-w-[52%] md:-translate-y-[6%]">
-          <p className="text-xs font-medium text-[#d3cfb7] sm:text-sm md:text-[clamp(0.625rem,1.1vw,0.875rem)]">
+        <div className="flex w-full max-w-[80%] flex-col text-start md:max-w-[52%] md:-translate-y-[12%] overflow-hidden ">
+          <p className="text-sm font-medium text-[#d3cfb7] sm:text-sm md:text-[clamp(1.4rem,1.2vw,1rem)]   md:mt-0">
             {t('home:hero.eyebrow')}
           </p>
 
-          <h1 className="mt-3 font-display text-[clamp(2rem,8vw,3.25rem)] font-bold leading-[1.5] text-[#d3cfb7] md:mt-[2%] md:text-[clamp(2rem,5.6vw,4.75rem)]">
-            {t('home:hero.title')}
-            <br />
+          <h1 className="mt-3 font-display text-[clamp(2rem,8vw,3.25rem)] font-bold leading-[1.5] text-[#d3cfb7] md:mt-[2%] md:text-[clamp(2rem,3.6vw,3.5rem)]">
+            {t('home:hero.title')}{" "}
             {t('home:hero.title2')}
           </h1>
 
-          <p className="mt-4 max-w-[11rem] text-balance text-base leading-relaxed text-primary-700 sm:max-w-sm md:mt-[2%] md:max-w-[100%] md:text-[clamp(0.75rem,1.5vw,1.25rem)]">
+          <p className="mt-4 max-w-[11rem] text-balance text-[#d3cfb7] text-base leading-relaxed  sm:max-w-sm md:mt-[2%] md:max-w-[100%] md:text-[clamp(1.5rem,1.7vw,1.5rem)]">
             {t('home:hero.subtitle')}
           </p>
 
-          <div className="mt-6 flex flex-wrap justify-start gap-3 md:mt-[4%] md:gap-[2%]">
+          <div className="mt-6 flex flex-wrap justify-start gap-4 md:mt-[8%] md:gap-[3%]">
             <Button to={paths.shop} variant="emerald" size="fluid">
               {t('home:hero.primaryCta')}
               <ChevronRight className="size-[1em] rtl:-scale-x-100" aria-hidden="true" />

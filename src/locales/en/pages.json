@@ -76,6 +76,66 @@
     "title": "Frequently asked questions",
     "subtitle": "Quick answers about the store, pieces, auctions and shipping."
   },
+  "terms": {
+    "title": "Terms and Conditions",
+    "description": "These terms explain the rules for using the Durar store, placing orders, and participating in auctions.",
+    "sections": [
+      {
+        "title": "Using the store",
+        "body": "By using this website or creating an account, you agree to follow these terms and applicable laws. Please provide accurate information, keep your sign-in details secure, and tell us if you suspect unauthorized account use."
+      },
+      {
+        "title": "Products and orders",
+        "body": "We make reasonable efforts to show accurate product descriptions and images, though colors may vary by display. Submitting an order is an offer to purchase; acceptance depends on availability and completion of payment. We will let you know about any material change before completing the order."
+      },
+      {
+        "title": "Prices and payment",
+        "body": "Prices, currency, and any shipping charges are shown during checkout. Prices and offers may change before an order is confirmed; changes do not apply retroactively to confirmed orders. Payments are processed using the payment method offered at checkout and subject to that provider's terms."
+      },
+      {
+        "title": "Delivery, exchanges, and returns",
+        "body": "Delivery times and costs depend on the destination and are shown during checkout or confirmed by our team. Exchange and return requests are subject to applicable law and the return policy in effect at the time of purchase. Contact us before sending an item back for instructions."
+      },
+      {
+        "title": "Auctions",
+        "body": "Auction participation is subject to the current bid, minimum increment, and timing shown on each auction page. A submitted bid is binding under the rules displayed for that auction, and the winning bidder must complete payment within the communicated timeframe."
+      },
+      {
+        "title": "Intellectual property and changes",
+        "body": "Website content, marks, and images are protected and may not be copied or used commercially without permission. We may update these terms when needed; the version published on this website applies from its publication. For questions, contact us using the details on our contact page."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "This policy explains what information may be needed when you use the Durar store and how it is handled.",
+    "sections": [
+      {
+        "title": "Information we collect",
+        "body": "We may collect information you provide when creating an account, placing an order, or contacting us, such as your name, contact details, delivery address, and order information. Basic technical information about website use may also be recorded to operate and protect the store."
+      },
+      {
+        "title": "How we use information",
+        "body": "We use information to manage accounts, orders, delivery, and customer support; send messages related to your order; and improve and protect the store. We will not use your information for a materially different purpose without a lawful basis or appropriate notice."
+      },
+      {
+        "title": "Sharing information",
+        "body": "We may share information that is necessary with service providers who help us deliver the service, such as payment, delivery, and technology providers, or where required by law. We expect service providers to handle information as needed to provide their services."
+      },
+      {
+        "title": "Retention and security",
+        "body": "We take appropriate measures to protect information from unauthorized access or use and retain it for as long as needed for the purposes described or to meet legal obligations. No method of electronic transmission or storage can be guaranteed to be completely secure."
+      },
+      {
+        "title": "Your choices and rights",
+        "body": "Depending on applicable law, you may ask to access or correct your information, or ask questions about its use. You may also request deletion when retention is no longer required. Contact us using the details on our contact page to make a request."
+      },
+      {
+        "title": "Browser storage and updates",
+        "body": "The store may use local browser storage for features such as your cart and favorites. You can manage site data in your browser settings, but clearing it may affect these features. We may update this policy and will publish the updated text on this page."
+      }
+    ]
+  },
   "notFound": {
     "title": "This page could not be found",
     "body": "The page you're looking for may have moved or no longer exists.",

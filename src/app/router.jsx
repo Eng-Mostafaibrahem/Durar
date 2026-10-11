@@ -36,6 +36,8 @@ const MyBidsPage = lazy(() => import('../features/account/pages/MyBidsPage.jsx')
 const AboutPage = lazy(() => import('../features/pages/AboutPage.jsx'));
 const ContactPage = lazy(() => import('../features/pages/ContactPage.jsx'));
 const FaqPage = lazy(() => import('../features/pages/FaqPage.jsx'));
+const TermsPage = lazy(() => import('../features/pages/TermsPage.jsx'));
+const PrivacyPage = lazy(() => import('../features/pages/PrivacyPage.jsx'));
 const TicketsPage = lazy(() => import('../features/tickets/pages/TicketsPage.jsx'));
 const TicketConfirmationPage = lazy(
   () => import('../features/tickets/pages/TicketConfirmationPage.jsx'),
@@ -133,6 +135,8 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="faq" element={<FaqPage />} />
+            <Route path="terms" element={<TermsPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
             <Route path="museum" element={<MuseumPage />} />
             <Route path="tickets" element={<TicketsPage />} />
             <Route path="tickets/confirmation" element={<TicketConfirmationPage />} />

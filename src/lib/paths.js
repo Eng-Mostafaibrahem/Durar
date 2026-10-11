@@ -22,6 +22,8 @@ export const paths = {
   about: '/about',
   contact: '/contact',
   faq: '/faq',
+  terms: '/terms',
+  privacy: '/privacy',
   museumPage: '/museum',
   tickets: '/tickets',
   ticketConfirmation: '/tickets/confirmation',

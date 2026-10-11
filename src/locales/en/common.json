@@ -57,6 +57,13 @@
     "help": "Help",
     "followUs": "Follow us",
     "rights": "All rights reserved.",
-    "showroom": "Showroom"
+    "showroom": "Showroom",
+    "story": "Our story",
+    "shop": "Shop",
+    "collections": "Collections",
+    "auctions": "Auctions",
+    "museum": "Visit the museum",
+    "home": "Home",
+    "navLabel": "Footer"
   }
 }

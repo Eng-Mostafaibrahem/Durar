@@ -41,7 +41,7 @@ export function EditorialBlock() {
           </Button>
         </div>
 
-        <div className="relative isolate overflow-hidden bg-dark-gradient shadow-xl ring-1 ring-border-500/20">
+        <div className="relative isolate overflow-hidden bg-dark-gradient rounded-xl shadow-xl ring-1 ring-border-500/20">
           <img
             src={cardCover}
             alt=""

@@ -20,14 +20,14 @@ export function VisitBanner({ to = paths.museum, className }) {
 
   return (
     <section className={cn('bg-bg-main px-4 py-6 sm:px-6 sm:py-8', className)}>
-      <div className="relative isolate mx-auto flex min-h-[clamp(16rem,36vw,24rem)] max-w-screen-2xl items-center justify-center overflow-hidden">
+      <div className="relative isolate rounded-xl mx-auto flex min-h-[clamp(16rem,36vw,24rem)] max-w-screen-2xl items-center justify-center overflow-hidden">
         {/* الصورة */}
         <img
           src={bannerImage}
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="absolute inset-0 -z-20 size-full object-cover"
+          className="absolute inset-0 -z-20 size-full object-cover rounded-xl"
         />
 
         {/* طبقة غامقة عشان النص يبان */}
@@ -45,7 +45,7 @@ export function VisitBanner({ to = paths.museum, className }) {
 
           <Link
             to={to}
-            className="mt-6 inline-flex items-center gap-2 rounded-[3px] bg-[#5c0b1c] px-6 py-3 text-sm text-white transition-colors duration-300 hover:bg-[#480916]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#5c0b1c] px-6 py-3 text-sm text-white transition-colors duration-300 hover:bg-[#480916]"
           >
             {CONTENT.cta[lang]}
             <ArrowUpRight className="size-4 rtl:-scale-x-100" aria-hidden="true" />

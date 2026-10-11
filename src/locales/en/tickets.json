@@ -37,6 +37,7 @@
     "hoursLabel": "Hours:",
     "hours": "9 AM to 10 PM",
     "price": "Price:",
+    "customerName": "Visitor name:",
     "currency": "SAR",
     "noDate": "—",
     "regularType": "Visitor ticket",

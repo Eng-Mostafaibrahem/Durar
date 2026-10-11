@@ -36,7 +36,7 @@ export function StoneStories() {
               <div
                 key={story.key}
                 className={cn(
-                  'group relative flex isolate min-h-[500px] flex-col justify-end overflow-hidden  p-6 shadow-md shadow-base-dark/10 transition-transform duration-300 ease-(--ease-luxury) hover:-translate-y-1',
+                  'group relative flex rounded-xl isolate min-h-[500px] flex-col justify-end overflow-hidden  p-6 shadow-md shadow-base-dark/10 transition-transform duration-300 ease-(--ease-luxury) hover:-translate-y-1',
                 )}
               >
                 {/* <Icon

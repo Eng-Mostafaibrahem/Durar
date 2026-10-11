@@ -45,7 +45,7 @@ function TicketCard({ ticket, quantity, onChange, language, t }) {
       )}
     >
       <div className="flex gap-3">
-        <div className="size-16 shrink-0 overflow-hidden rounded-lg bg-linear-to-br from-secondary-500 to-secondary-700">
+        {/* <div className="size-16 shrink-0 overflow-hidden rounded-lg bg-linear-to-br from-secondary-500 to-secondary-700">
           {ticket.image ? (
             <img
               src={ticket.image}
@@ -55,7 +55,7 @@ function TicketCard({ ticket, quantity, onChange, language, t }) {
               className="size-full object-cover"
             />
           ) : null}
-        </div>
+        </div> */}
 
         <div className="min-w-0 flex-1">
           <p className="font-display text-sm font-bold text-base-dark" dir="auto">

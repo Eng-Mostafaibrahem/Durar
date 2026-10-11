@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Container } from '../../../components/Container.jsx';
 import { Skeleton } from '../../../components/ui/Skeleton.jsx';
 import { Button } from '../../../components/ui/Button.jsx';
-import { HiArrowLeft } from 'react-icons/hi2';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2';
 import { localized } from '../../../lib/response.js';
 import { resolveImageUrl } from '../../../utils/media.js';
 import { paths } from '../../../lib/paths.js';
@@ -37,7 +37,7 @@ export function CollectionsShowcase() {
           action={
             <Button to={paths.collections} variant="outline" size="sm">
               {t('home:featured.viewAll')}
-              <HiArrowLeft aria-hidden="true" className="size-4 rtl:rotate-180" />
+              <HiArrowRight aria-hidden="true" className="size-4 rtl:rotate-180" />
             </Button>
           }
         />
@@ -54,7 +54,7 @@ export function CollectionsShowcase() {
                     to={paths.collection(tile.id)}
                     className="group relative isolate block aspect-[4/3] overflow-hidden shadow-md shadow-base-dark/10 transition-[transform,box-shadow] duration-300 ease-(--ease-luxury) hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/15"
                   >
-                    <div className={cn('absolute inset-0 bg-gradient-to-br', tile.tone)} />
+                    <div className={cn('absolute inset-0 bg-gradient-to-br ', tile.tone)} />
                     <img
                       src={cardCover}
                       alt=""
@@ -77,7 +77,7 @@ export function CollectionsShowcase() {
                     <Link
                       key={category.id}
                       to={paths.collection(category.id)}
-                      className="group relative isolate block aspect-[4/3] overflow-hidden shadow-md shadow-base-dark/10 transition-[transform,box-shadow] duration-300 ease-(--ease-luxury) hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/15"
+                      className="group relative rounded-xl isolate block aspect-[4/3] overflow-hidden shadow-md shadow-base-dark/10 transition-[transform,box-shadow] duration-300 ease-(--ease-luxury) hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/15"
                     >
                       <div className={cn('absolute inset-0 bg-gradient-to-br', tile.tone)} />
                       <img

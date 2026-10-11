@@ -64,7 +64,7 @@ export function MuseumSection({ to = paths.museum, className }) {
 
           <Link
             to={to}
-            className="mt-8 inline-flex items-center gap-2 rounded-[3px] bg-[#5c0b1c] px-6 py-3 text-sm text-white transition-colors duration-300 hover:bg-[#480916]"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#5c0b1c] px-6 py-3 text-sm text-white transition-colors duration-300 hover:bg-[#480916]"
           >
             {CONTENT.cta[lang]}
             <ArrowUpRight className="size-4 rtl:-scale-x-100" aria-hidden="true" />
@@ -78,7 +78,7 @@ export function MuseumSection({ to = paths.museum, className }) {
             alt=""
             aria-hidden="true"
             loading="lazy"
-            className="aspect-[1.05] w-full object-cover"
+            className="aspect-[1.05] w-full object-cover rounded-xl"
           />
         </div>
       </div>

@@ -24,4 +24,5 @@ export const paths = {
   faq: '/faq',
   museumPage: '/museum',
   tickets: '/tickets',
+  ticketConfirmation: '/tickets/confirmation',
 };

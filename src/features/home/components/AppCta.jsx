@@ -25,11 +25,11 @@ export function AppDownloadBanner({ className }) {
 
   return (
     <section className={cn('bg-bg-main px-4 pt-16 sm:px-6 sm:pt-24 md:pt-28', className)}>
-      <div className="relative isolate mx-auto max-w-screen-2xl rounded-lg bg-[#5c0b1c]">
+      <div className="relative isolate mx-auto max-w-screen-2xl rounded-xl bg-[#5c0b1c]">
         {/* خلفية الخطوط الطبوغرافية */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 overflow-hidden rounded-lg opacity-40"
+          className="absolute inset-0 -z-10 overflow-hidden rounded-xl opacity-40"
           style={{
             backgroundImage: `url(${topoPattern})`,
             backgroundSize: 'cover',

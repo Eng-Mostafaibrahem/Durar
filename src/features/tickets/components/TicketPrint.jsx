@@ -48,6 +48,7 @@ function expandTickets(reservation) {
     for (let i = 0; i < quantity && list.length < MAX_PRINTED_TICKETS; i++) {
       list.push({
         number: reference,
+        customerName: reservation.name,
         date: reservation.eventAt,
         typeName: item.ticket_name || '',
         price,
@@ -58,6 +59,7 @@ function expandTickets(reservation) {
   if (list.length === 0) {
     list.push({
       number: reference,
+      customerName: reservation.name,
       date: reservation.eventAt,
       typeName: '',
       price: Number(reservation.total) || 0,
@@ -107,6 +109,7 @@ export function TicketPrint({ reservation, onBookAnother }) {
               ticket={ticket}
               variant={index % 2 === 0 ? 'burgundy' : 'green'}
               location={t('ticket.location')}
+              customerName={ticket.customerName}
             />
           </div>
         ))}

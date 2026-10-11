@@ -12,10 +12,10 @@ export function MuseumHero() {
       eyebrow={t('hero.eyebrow')}
       title={t('hero.title')}
       subtitle={t('hero.subtitle')}
-      primaryCta={t('hero.primaryCta')}
-      primaryTo={paths.shop}
+      primaryCta={t('hero.secondaryCta')}
+      primaryTo={paths.tickets}
       secondaryCta={t('hero.secondaryCta')}
-      secondaryTo={paths.tickets}
+      // secondaryTo={paths.}
       overlay="bg-black/55"
       minHeight="min-h-[440px] md:min-h-[580px]"
     />

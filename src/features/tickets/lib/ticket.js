@@ -18,7 +18,9 @@ export function normalizeTicket(record, language = 'ar') {
   // `quantity` is the remaining stock; negative / empty means unlimited.
   const rawRemaining = source.quantity;
   const hasLimit =
-    rawRemaining !== null && rawRemaining !== undefined && rawRemaining !== '' &&
+    rawRemaining !== null &&
+    rawRemaining !== undefined &&
+    rawRemaining !== '' &&
     Number(rawRemaining) >= 0;
   const remaining = hasLimit ? Number(rawRemaining) : null;
 
@@ -78,7 +80,7 @@ export function buildReservation({ booking, form, selectedTickets }) {
     total: Number(source.total) || 0,
     redirectUrl: source.redirect_url || null,
     items,
-    name: form.customer_name ?? '',
+    name: String(form.customer_name ?? '').trim(),
     phone: form.phone ?? '',
     nationalId: form.national_id ?? '',
     eventAt: first?.eventAt ?? null,

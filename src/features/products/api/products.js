@@ -3,14 +3,16 @@ import { endpoints } from '../../../lib/endpoints.js';
 import { normalizePage } from '../../../lib/response.js';
 
 /**
- * GET /products — paginated storefront list. Keep the response envelope so
- * Laravel's sibling `meta` pagination object is not discarded by apiClient.
+ * GET /products/store or /products/museum — paginated product list. Keep the
+ * response envelope so Laravel's sibling `meta` pagination object is not
+ * discarded by apiClient.
  * `filter` picks landing/curated sets: best_selling | newest | rare.
  * Shop filters are sent to the backend as search, type, min_price, max_price,
  * in_stock, on_offer, and sort (newest | price_asc | price_desc | popular).
  */
 export async function fetchProducts(
   {
+    scope = 'store',
     category_id,
     page = 1,
     per_page,
@@ -27,12 +29,14 @@ export async function fetchProducts(
   } = {},
   { signal } = {},
 ) {
-  const sortBy = {
-    priceAsc: 'price_asc',
-    priceDesc: 'price_desc',
-  }[sort] ?? sort;
+  const sortBy =
+    {
+      priceAsc: 'price_asc',
+      priceDesc: 'price_desc',
+    }[sort] ?? sort;
 
-  const payload = await apiClient.get(endpoints.products.list, {
+  const listEndpoint = scope === 'museum' ? endpoints.products.museum : endpoints.products.store;
+  const payload = await apiClient.get(listEndpoint, {
     params: {
       category_id,
       page,

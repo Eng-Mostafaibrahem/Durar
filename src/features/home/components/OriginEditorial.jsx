@@ -35,7 +35,7 @@ export function OriginEditorial() {
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="absolute inset-0 size-full object-cover"
+          className="absolute inset-0 size-full object-cover rounded-xl"
         />
       </div>
       {/* النص: العمود الثاني (start) */}

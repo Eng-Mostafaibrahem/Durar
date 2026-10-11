@@ -16,7 +16,9 @@ export const endpoints = {
     profile: '/auth/profile',
   },
   products: {
-    list: '/products',
+    list: '/products/store',
+    store: '/products/store',
+    museum: '/products/museum',
     details: (id) => `/products/${id}`,
     reviews: (id) => `/products/${id}/reviews`,
     submitReview: (id) => `/products/${id}/reviews`,

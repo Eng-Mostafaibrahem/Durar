@@ -22,7 +22,7 @@ export function FaqSection({ className }) {
             return (
               <li
                 key={item.q.en}
-                className="overflow-hidden rounded-md border border-primary-500 bg-[#5c0b1c] text-white"
+                className="overflow-hidden rounded-xl border border-primary-500 bg-[#5c0b1c] text-white"
               >
                 <h3 className='text-white'>
                   <button

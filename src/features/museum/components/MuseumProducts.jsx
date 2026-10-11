@@ -5,15 +5,15 @@ import { Container } from '../../../components/Container.jsx';
 import { paths } from '../../../lib/paths.js';
 import { Button } from '../../../components/ui/Button.jsx';
 import { SkeletonCard } from '../../../components/ui/Skeleton.jsx';
-import { useFeaturedPicks } from '../../home/hooks/useFeaturedPicks.js';
+import { useProducts } from '../../products/hooks/useProducts.js';
 import { ProductGrid } from '../../home/components/ProductGrid.jsx';
 
-const MUSEUM_PICKS = 4;
+// const MUSEUM_PICKS = 4;
 
 export function MuseumProducts() {
   const { t } = useTranslation('museum');
-  const query = useFeaturedPicks('best_selling');
-  const products = (query.data?.items ?? []).slice(0, MUSEUM_PICKS);
+  const query = useProducts({ scope: 'museum', page: 1 });
+  const products = (query.data?.items ?? [])
 
   return (
     <section className="bg-bg-main py-16 sm:py-20">
@@ -25,7 +25,7 @@ export function MuseumProducts() {
               {t('products.title')}
             </h2>
           </div>
-          <Link
+          {/* <Link
             to={paths.shop}
             className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary-500 transition-colors hover:text-primary-600"
           >
@@ -34,7 +34,7 @@ export function MuseumProducts() {
               aria-hidden="true"
               className="size-4 transition-transform rtl:-scale-x-100 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"
             />
-          </Link>
+          </Link> */}
         </div>
 
         {query.isPending ? (

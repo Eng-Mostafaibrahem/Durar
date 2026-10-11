@@ -3,6 +3,7 @@ import { cn } from '../../utils/cn.js';
 export const NAV_ITEMS = [
   { to: '/', labelKey: 'nav:home', end: true },
   { to: '/store', labelKey: 'nav:jewelry' },
+  { to: '/museum', labelKey: 'nav:museum' },
   // { to: '/store', labelKey: 'nav:stones', shopLink: true },
   // { to: '/store', labelKey: 'nav:collections', shopLink: true },
   { to: '/auctions', labelKey: 'nav:auctions' },

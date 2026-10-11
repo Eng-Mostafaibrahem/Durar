@@ -53,11 +53,14 @@ export function BehindTheStone({ className }) {
   return (
     <section className={cn('bg-bg-main py-10 sm:py-14', className)}>
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
-        <ul className="grid grid-cols-1 border-s border-t border-primary-500/70 md:grid-cols-2">
+        <ul className="grid grid-cols-1   border rounded-xl border-primary-500/70 md:grid-cols-2">
           {ITEMS.map((item) => (
-            <li key={item.id} className="border-b border-e border-primary-500/70">
+            <li
+              key={item.id}
+              className="border-b border-primary-500/70 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0"
+            >
               <Link
-                to={`/learn/${item.id}`}
+                // to={`/learn/${item.id}`}
                 className="group flex items-center gap-4 p-2 transition-colors duration-300 hover:bg-primary-500/[0.04] sm:gap-5"
               >
                 <img
@@ -65,7 +68,7 @@ export function BehindTheStone({ className }) {
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
-                  className="aspect-square w-24 shrink-0 object-cover sm:w-32 lg:w-36"
+                  className="aspect-square w-24 shrink-0 object-cover sm:w-32 lg:w-36 rounded-xl"
                 />
 
                 <div className="min-w-0 flex-1 text-start">

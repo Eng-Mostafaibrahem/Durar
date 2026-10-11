@@ -16,6 +16,20 @@ export async function fetchTickets({ signal } = {}) {
   return normalizePage(payload);
 }
 
+/** GET /my-ticket — authenticated visitor ticket bookings. */
+export async function fetchMyTickets({ page = 1, signal } = {}) {
+  const payload = await apiClient.get(endpoints.tickets.mine, {
+    params: { page },
+    signal,
+  });
+  const pagePayload =
+    payload && !Array.isArray(payload) && Array.isArray(payload.tickets)
+      ? { ...payload, data: payload.tickets }
+      : payload;
+
+  return normalizePage(pagePayload);
+}
+
 /**
  * POST /tickets/book — books visit tickets for a guest visitor.
  * Payload: { customer_name, national_id, phone, items: [{ ticket_id, quantity }] }.

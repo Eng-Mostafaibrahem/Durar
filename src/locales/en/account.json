@@ -3,6 +3,7 @@
   "profile": "Profile",
   "addresses": "Addresses",
   "orders": "Orders",
+  "tickets": "My tickets",
   "bids": "My bids",
   "favorites": "Favorites",
   "changePassword": "Change password",
@@ -42,6 +43,18 @@
     "status": "Status",
     "details": "View details",
     "loadMore": "Load more orders"
+  },
+  "ticketsList": {
+    "description": "Durar Museum visit tickets associated with your account.",
+    "empty": "No tickets are linked to your account",
+    "emptyHint": "Ticket bookings associated with your account will appear here.",
+    "error": "Could not load your tickets. Please try again.",
+    "reference": "Booking reference",
+    "quantity_one": "{{count}} ticket",
+    "quantity_other": "{{count}} tickets",
+    "visitDate": "Visit date",
+    "bookedAt": "Booking date",
+    "loadMore": "Load more tickets"
   },
   "orderDetails": {
     "back": "Back to orders",

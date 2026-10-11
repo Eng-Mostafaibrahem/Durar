@@ -56,5 +56,6 @@ export const endpoints = {
   tickets: {
     list: '/tickets',
     book: '/tickets/book',
+    mine: '/my-tickets',
   },
 };

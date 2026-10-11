@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+// import { HiOutlineTicket } from 'react-icons/hi2';
 import { Container } from '../components/Container.jsx';
 import { paths } from '../lib/paths.js';
 import { useAuth } from '../features/auth/hooks/useAuth.js';
@@ -8,6 +9,7 @@ import { Button } from '../components/ui/Button.jsx';
 const ITEMS = [
   { to: paths.account, labelKey: 'account:profile', end: true },
   { to: paths.accountOrders, labelKey: 'account:orders' },
+  { to: paths.accountTickets, labelKey: 'account:tickets',   },
   { to: paths.accountBids, labelKey: 'account:bids' },
   { to: paths.favorites, labelKey: 'account:favorites' },
 ];
@@ -21,9 +23,7 @@ export function AccountLayout() {
       <Container className="flex flex-col gap-8 py-10 lg:flex-row">
         <aside className="lg:w-64">
           <div className="rounded-xl border border-border-100 bg-white p-5">
-            <p className="font-sans text-lg text-base-dark">
-              {user?.name || t('account:title')}
-            </p>
+            <p className="font-sans text-lg text-base-dark">{user?.name || t('account:title')}</p>
             {user?.email && <p className="mt-1 text-xs text-hue-500">{user.email}</p>}
 
             <nav aria-label={t('account:title')} className="mt-4">
@@ -41,6 +41,7 @@ export function AccountLayout() {
                         }`
                       }
                     >
+                      {item.icon && <item.icon aria-hidden="true" className="me-2 inline size-4" />}
                       {t(item.labelKey)}
                     </NavLink>
                   </li>

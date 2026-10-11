@@ -8,6 +8,7 @@ import {
   HiPencilSquare,
   HiMapPin,
   HiHeart,
+  HiOutlineTicket,
   HiShoppingBag,
   HiOutlineScale,
 } from 'react-icons/hi2';
@@ -244,7 +245,10 @@ export default function AccountPage() {
               <InfoRow label={t('auth:fields.email')} value={user?.email} />
 
               {submitError && (
-                <p role="alert" className="rounded-lg bg-error-100 px-4 py-3 text-sm text-error-500">
+                <p
+                  role="alert"
+                  className="rounded-lg bg-error-100 px-4 py-3 text-sm text-error-500"
+                >
                   {submitError}
                 </p>
               )}
@@ -267,6 +271,12 @@ export default function AccountPage() {
             icon={HiShoppingBag}
             title={t('account:orders')}
             hint={t('account:ordersList.empty')}
+          />
+          <ActionCard
+            to={paths.accountTickets}
+            icon={HiOutlineTicket}
+            title={t('account:tickets')}
+            hint={t('account:ticketsList.emptyHint')}
           />
           <ActionCard
             to={paths.accountBids}

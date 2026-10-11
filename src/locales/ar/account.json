@@ -3,6 +3,7 @@
   "profile": "الملف الشخصي",
   "addresses": "العناوين",
   "orders": "الطلبات",
+  "tickets": "تذاكري",
   "bids": "مزاداتي",
   "favorites": "المفضلة",
   "changePassword": "تغيير كلمة المرور",
@@ -42,6 +43,21 @@
     "status": "الحالة",
     "details": "عرض التفاصيل",
     "loadMore": "المزيد من الطلبات"
+  },
+  "ticketsList": {
+    "description": "تذاكر زيارات متحف درر المرتبطة بحسابك.",
+    "empty": "لا توجد تذاكر مرتبطة بحسابك",
+    "emptyHint": "ستظهر هنا حجوزات التذاكر المرتبطة بحسابك.",
+    "error": "تعذّر تحميل تذاكرك. حاول مرة أخرى.",
+    "reference": "رقم الحجز",
+    "quantity_one": "تذكرة واحدة",
+    "quantity_two": "تذكرتان",
+    "quantity_few": "{{count}} تذاكر",
+    "quantity_many": "{{count}} تذكرة",
+    "quantity_other": "{{count}} تذكرة",
+    "visitDate": "موعد الزيارة",
+    "bookedAt": "تاريخ الحجز",
+    "loadMore": "عرض المزيد من التذاكر"
   },
   "orderDetails": {
     "back": "العودة إلى الطلبات",

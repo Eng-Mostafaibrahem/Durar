@@ -33,6 +33,7 @@ const AccountPage = lazy(() => import('../features/account/pages/AccountPage.jsx
 const OrdersPage = lazy(() => import('../features/account/pages/OrdersPage.jsx'));
 const OrderDetailsPage = lazy(() => import('../features/orders/pages/OrderDetailsPage.jsx'));
 const MyBidsPage = lazy(() => import('../features/account/pages/MyBidsPage.jsx'));
+const MyTicketsPage = lazy(() => import('../features/account/pages/MyTicketsPage.jsx'));
 const AboutPage = lazy(() => import('../features/pages/AboutPage.jsx'));
 const ContactPage = lazy(() => import('../features/pages/ContactPage.jsx'));
 const FaqPage = lazy(() => import('../features/pages/FaqPage.jsx'));
@@ -153,6 +154,7 @@ export function AppRouter({ onUnauthorized, unauthorizedRedirect = '/login' }) {
               <Route index element={<AccountPage />} />
               <Route path="orders" element={<OrdersPage />} />
               <Route path="orders/:id" element={<OrderDetailsPage />} />
+              <Route path="tickets" element={<MyTicketsPage />} />
               <Route path="bids" element={<MyBidsPage />} />
             </Route>
           </Route>

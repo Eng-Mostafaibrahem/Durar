@@ -19,6 +19,7 @@ export const paths = {
   accountOrders: '/account/orders',
   accountOrderDetails: (id) => `/account/orders/${id}`,
   accountBids: '/account/bids',
+  accountTickets: '/account/tickets',
   about: '/about',
   contact: '/contact',
   faq: '/faq',

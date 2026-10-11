@@ -51,5 +51,6 @@ export const queryKeys = {
   tickets: {
     all: ['tickets'],
     list: () => ['tickets', 'list'],
+    mine: (filters) => ['tickets', 'mine', filters ?? {}],
   },
 };
